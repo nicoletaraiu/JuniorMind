@@ -16,11 +16,20 @@ namespace FizzBuzz
            string multipleOf3 = multiple(12); 
             Assert.AreEqual("Fizz", multipleOf3);
         }
+        [TestMethod]
+        public void TestMultipleOf5()
+        {
+            string multipleOf5 = multiple(25);
+            Assert.AreEqual("Buzz", multipleOf5);
+        }
 
         string multiple(int numar) {
             string msg= "";
-            if (numar %2 == 0)
-               msg = "Fizz";
+            if (numar % 3 == 0)
+                msg = "Fizz";
+            else
+            if (numar % 5 == 0)
+                msg = "Buzz";
             return msg; 
         }
     }
