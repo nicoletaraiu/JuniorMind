@@ -22,9 +22,18 @@ namespace FizzBuzz
             string multipleOf5 = multiple(25);
             Assert.AreEqual("Buzz", multipleOf5);
         }
+        [TestMethod]     
+        public void TestMultipleOf3and5()
+        {
+            string multipleOf3and5 = multiple(15);
+            Assert.AreEqual("FizzBuzz", multipleOf3and5);
+        }   
 
         string multiple(int numar) {
-            string msg= "";
+          string msg= "";
+            if ((numar % 3 == 0) && (numar % 5 == 0))
+                msg = "FizzBuzz";
+            else 
             if (numar % 3 == 0)
                 msg = "Fizz";
             else
