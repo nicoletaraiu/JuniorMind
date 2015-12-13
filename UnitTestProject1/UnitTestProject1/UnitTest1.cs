@@ -10,11 +10,19 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace UnitTestProject1
 {
     [TestClass]
-    public class UnitTest1
+    public class TestPepene
     {
         [TestMethod]
         public void TestMethod1()
         {
+            string raspunsNrParDeKg = raspuns(12);
+
+            Assert.AreEqual("Da", raspunsNrParDeKg); 
+        }
+        string raspuns(int totalKgPepene) {
+            int parity = totalKgPepene % 2;
+            return parity == 0 ? "Da" : "Nu";
+
         }
     }
 }
