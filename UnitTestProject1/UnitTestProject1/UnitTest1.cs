@@ -13,15 +13,26 @@ namespace UnitTestProject1
     public class TestPepene
     {
         [TestMethod]
-        public void TestMethod1()
+        public void NumarParDeKg()
         {
             string raspunsNrParDeKg = raspuns(12);
 
             Assert.AreEqual("Da", raspunsNrParDeKg); 
         }
+        [TestMethod]
+        public void NumarNuE2()
+        {
+            string raspunsNr2 = raspuns(2);
+             Assert.AreEqual("Nu", raspunsNr2);
+        }
+
         string raspuns(int totalKgPepene) {
-            int parity = totalKgPepene % 2;
-            return parity == 0 ? "Da" : "Nu";
+            string rasp = "Nu";
+            if ((totalKgPepene % 2 == 0) && (totalKgPepene != 2))
+                rasp = "Da";
+            return rasp; 
+
+            
 
         }
     }
