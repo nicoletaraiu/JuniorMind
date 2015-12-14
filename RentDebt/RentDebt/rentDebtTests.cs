@@ -22,9 +22,22 @@ namespace RentDebt
             Assert.AreEqual(104, CalculateRentDebt(100, 2));
         }
 
+        [TestMethod]
+        public void RentDebtAfewWeeksLate()
+        {
+            Assert.AreEqual(160, CalculateRentDebt(100, 12));
+        }
+
         decimal CalculateRentDebt(int rent, int numberOfDaysLate)
         {
-            return (rent + numberOfDaysLate * rent * 2 / 100); 
+            decimal totalRentDebt = 0;
+            if ((numberOfDaysLate > 0) && (numberOfDaysLate <= 10))
+                totalRentDebt = rent + numberOfDaysLate * rent * 2 /100;
+            else 
+                 if ((numberOfDaysLate > 10) && (numberOfDaysLate <=30 ))
+                    totalRentDebt = rent + numberOfDaysLate * rent * 5 / 100;
+
+            return totalRentDebt; 
         }
     }
 }
