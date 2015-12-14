@@ -28,14 +28,23 @@ namespace RentDebt
             Assert.AreEqual(160, CalculateRentDebt(100, 12));
         }
 
+        [TestMethod]
+        public void RentDebtMoreThanAMonthLate()
+        {
+            Assert.AreEqual(420, CalculateRentDebt(100, 32));
+        }
+
         decimal CalculateRentDebt(int rent, int numberOfDaysLate)
         {
-            decimal totalRentDebt = 0;
+            decimal totalRentDebt = rent;
             if ((numberOfDaysLate > 0) && (numberOfDaysLate <= 10))
                 totalRentDebt = rent + numberOfDaysLate * rent * 2 /100;
             else 
                  if ((numberOfDaysLate > 10) && (numberOfDaysLate <=30 ))
                     totalRentDebt = rent + numberOfDaysLate * rent * 5 / 100;
+            else
+                if ((numberOfDaysLate > 30) && (numberOfDaysLate <= 40))
+                totalRentDebt = rent + numberOfDaysLate * rent * 10 / 100;
 
             return totalRentDebt; 
         }
