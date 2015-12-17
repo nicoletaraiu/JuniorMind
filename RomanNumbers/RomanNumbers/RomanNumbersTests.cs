@@ -17,13 +17,22 @@ namespace RomanNumbers
         {
             Assert.AreEqual("II", convertToRomanNumbers(2));
         }
+        [TestMethod]
+        public void ConvertToRoman3()
+        {
+            Assert.AreEqual("III", convertToRomanNumbers(3));
+        }
 
         string convertToRomanNumbers(int number)
         {
             if (number == 1)
                 return "I";
             else
+                 if (number == 2)
                 return "II";
+            else
+                return "III"; 
+
         }
     }
     
