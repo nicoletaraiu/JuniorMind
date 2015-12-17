@@ -40,7 +40,11 @@ namespace RomanNumbers
             string[] romanUnitsNumbers = { "", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX"};
             string[] romanTensNumbers = { "", "X", "XX", "XXX", "XL", "L", "LX", "LXX", "LXXX", "XC" };
             string[] romanHundredsNumbers = { "", "C", "CC", "CCC", "CD", "D", "DC", "DCC", "DCCC", "DC" };
-            return romanHundredsNumbers[number/100] + romanTensNumbers[number %100 / 10] + romanUnitsNumbers[number % 10];
+            string hundreds = romanHundredsNumbers[number / 100];
+            string tens = romanTensNumbers[number % 100 / 10];
+            string units = romanUnitsNumbers[number % 10];
+
+            return hundreds + tens + units;
             
          }
     }
