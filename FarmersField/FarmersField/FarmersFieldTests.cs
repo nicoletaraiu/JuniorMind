@@ -23,12 +23,22 @@ namespace FarmersField
             Assert.AreEqual(225, initialFieldDimension(16, 465));
 
         }
+        [TestMethod]
+        public void CalculateInitialDimmensionWhenDeltaSmallerThan0()
+        {
+            Assert.AreEqual(0, initialFieldDimension(4, -12));
+
+        }
         double initialFieldDimension(int newFieldWidth, int finalFieldDimension)
         {
-            double Delta = newFieldWidth * newFieldWidth - 4 * (- finalFieldDimension);
-            double L = (-newFieldWidth + Math.Sqrt(Delta)) / 2;
-            return L * L; 
-
+            double Delta = newFieldWidth * newFieldWidth - 4 * (-finalFieldDimension);
+            if (Delta >= 0)
+            {
+                double L = (-newFieldWidth + Math.Sqrt(Delta)) / 2;
+                return L * L;
+            }
+            else
+                return 0;
         }
     }
 }
