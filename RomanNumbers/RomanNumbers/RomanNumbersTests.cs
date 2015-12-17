@@ -8,8 +8,15 @@ namespace RomanNumbers
     public class RomanNumbersTests
     {
         [TestMethod]
-        public void TestMethod1()
+        public void ConvertToRoman1()
         {
+            Assert.AreEqual("I", convertToRomanNumbers(1));
+        }
+
+        string convertToRomanNumbers(int number)
+        {
+            return "I";
         }
     }
+    
 }
