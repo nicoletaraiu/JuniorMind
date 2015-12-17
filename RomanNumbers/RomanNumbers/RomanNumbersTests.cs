@@ -29,13 +29,18 @@ namespace RomanNumbers
         {
             Assert.AreEqual("LVI", convertToRomanNumbers(56));
         }
+        [TestMethod]
+        public void ConvertToRoman469()
+        {
+            Assert.AreEqual("CDLXIX", convertToRomanNumbers(469));
+        }
 
         string convertToRomanNumbers(int number)
         {
             string[] romanUnitsNumbers = { "", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX"};
             string[] romanTensNumbers = { "", "X", "XX", "XXX", "XL", "L", "LX", "LXX", "LXXX", "XC" };
-
-            return romanTensNumbers[number / 10] + romanUnitsNumbers[number % 10];
+            string[] romanHundredsNumbers = { "", "C", "CC", "CCC", "CD", "D", "DC", "DCC", "DCCC", "DC" };
+            return romanHundredsNumbers[number/100] + romanTensNumbers[number %100 / 10] + romanUnitsNumbers[number % 10];
             
          }
     }
