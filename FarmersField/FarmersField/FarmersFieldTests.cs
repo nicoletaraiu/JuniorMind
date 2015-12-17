@@ -17,6 +17,12 @@ namespace FarmersField
             Assert.AreEqual(4, initialFieldDimension(4, 12));
 
         }
+        [TestMethod]
+        public void CalculateInitialDimmensionForABiggerField()
+        {
+            Assert.AreEqual(225, initialFieldDimension(16, 465));
+
+        }
         double initialFieldDimension(int newFieldWidth, int finalFieldDimension)
         {
             double Delta = newFieldWidth * newFieldWidth - 4 * (- finalFieldDimension);
