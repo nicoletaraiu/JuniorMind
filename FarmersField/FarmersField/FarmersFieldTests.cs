@@ -14,35 +14,35 @@ namespace FarmersField
         [TestMethod]
         public void CalculateInitialDimmensionForASmallField()
         {
-            Assert.AreEqual(4, initialFieldDimension(4, 12));
+            Assert.AreEqual(4, calculateInitialFieldDimension(4, 12));
 
         }
         [TestMethod]
         public void CalculateInitialDimmensionForABiggerField()
         {
-            Assert.AreEqual(225, initialFieldDimension(16, 465));
+            Assert.AreEqual(225, calculateInitialFieldDimension(16, 465));
 
         }
         [TestMethod]
         public void CalculateInitialDimmensionWhenDeltaSmallerThan0()
         {
-            Assert.AreEqual(0, initialFieldDimension(4, -12));
+            Assert.AreEqual(0, calculateInitialFieldDimension(4, -12));
 
         }
         [TestMethod]
         public void CalculateInitialDimmensionForTheFieldInTheProblem()
         {
-            Assert.AreEqual(592900, initialFieldDimension(230, 770000));
+            Assert.AreEqual(592900, calculateInitialFieldDimension(230, 770000));
 
         }
 
-        double initialFieldDimension(int newFieldWidth, int finalFieldDimension)
+        double calculateInitialFieldDimension(int newFieldWidth, int finalFieldDimension)
         {
             double Delta = newFieldWidth * newFieldWidth - 4 * (-finalFieldDimension);
             if (Delta >= 0)
             {
-                double L = (-newFieldWidth + Math.Sqrt(Delta)) / 2;
-                return L * L;
+                double Length = (-newFieldWidth + Math.Sqrt(Delta)) / 2;
+                return Length * Length;
             }
             else
                 return 0;
