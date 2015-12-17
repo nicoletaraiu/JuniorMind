@@ -1,14 +1,28 @@
-﻿using System;
+﻿/*Un fermier are un teren pătrat. Pentru a-și extinde suprafața a mai cumpărat o parcelă 
+alăturată. Noua parcelă are acceași lungime și are o lățime de 230m. Acum fermierul are
+un teren de 77ha (770.000mp).
+Ce dimensiune avea inițial terenul?*/
+
+using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace FarmersField
 {
     [TestClass]
-    public class UnitTest1
+    public class FarmersFieldTests
     {
         [TestMethod]
-        public void TestMethod1()
+        public void CalculateInitialDimmensionForASmallField()
         {
+            Assert.AreEqual(4, initialFieldDimension(4, 12));
+
+        }
+        double initialFieldDimension(int newFieldWidth, int finalFieldDimension)
+        {
+            double Delta = newFieldWidth * newFieldWidth - 4 * (- finalFieldDimension);
+            double L = (-newFieldWidth + Math.Sqrt(Delta)) / 2;
+            return L * L; 
+
         }
     }
 }
