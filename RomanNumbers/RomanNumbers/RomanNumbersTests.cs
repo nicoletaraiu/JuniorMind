@@ -23,17 +23,20 @@ namespace RomanNumbers
             Assert.AreEqual("III", convertToRomanNumbers(3));
         }
 
+        [TestMethod]
+        public void ConvertToRoman17()
+        {
+            Assert.AreEqual("XVII", convertToRomanNumbers(17));
+        }
+
         string convertToRomanNumbers(int number)
         {
-            string[] romanNumbers = { "", "I", "II", "III" };
-            
-                return romanNumbers[number]; 
-            
+            string[] romanUnitsNumbers = { "", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX"};
+            string[] romanTensNumbers = { "", "X" };
 
- 
-                 
-
-        }
+            return romanTensNumbers[number / 10] + romanUnitsNumbers[number % 10];
+            
+         }
     }
     
 }
