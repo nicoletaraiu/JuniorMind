@@ -12,10 +12,18 @@ namespace RomanNumbers
         {
             Assert.AreEqual("I", convertToRomanNumbers(1));
         }
+        [TestMethod]
+        public void ConvertToRoman2()
+        {
+            Assert.AreEqual("II", convertToRomanNumbers(2));
+        }
 
         string convertToRomanNumbers(int number)
         {
-            return "I";
+            if (number == 1)
+                return "I";
+            else
+                return "II";
         }
     }
     
