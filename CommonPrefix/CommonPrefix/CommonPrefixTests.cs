@@ -17,18 +17,21 @@ namespace CommonPrefix
         [TestMethod]
         public void CommonPrefixForTwoLongerStrings()
         {
-            Assert.AreEqual("aan", FindCommonPrefix("aanc", "aanabb"));
+            Assert.AreEqual("aan", FindCommonPrefix("aanca", "aanaabb"));
         }
 
         string FindCommonPrefix(string firstString, string secondString)
         {
             string prefix = string.Empty;
             for (int i = 0; i < firstString.Length; i++)
-            {  
-               if (firstString[i] == secondString[i])
+            {
+                if (firstString[i] == secondString[i])
                 {
-                    prefix += firstString[i]; 
+                    prefix += firstString[i];
                 }
+                else
+                    break; 
+                 
             }
             return prefix;
         }
