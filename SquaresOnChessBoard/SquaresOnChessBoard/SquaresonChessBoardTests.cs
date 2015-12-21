@@ -23,6 +23,11 @@ namespace SquaresOnChessBoard
         {
             Assert.AreEqual(30, CalculateSquaresOnChessBoard(4));
         }
+        [TestMethod]
+        public void SquaresOnA8x8Board()
+        {
+            Assert.AreEqual(204, CalculateSquaresOnChessBoard(8));
+        }
 
         int CalculateSquaresOnChessBoard(int number)
         {
