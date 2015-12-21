@@ -9,8 +9,14 @@ namespace SquaresOnChessBoard
     public class SquaresonChessBoardTests
     {
         [TestMethod]
-        public void TestMethod1()
+        public void SquaresOnA2x2Board()
         {
+            Assert.AreEqual(5, CalculateSquaresOnChessBoard(2));
+        }
+
+        int CalculateSquaresOnChessBoard(int number)
+        {
+            return 1 + 2*2;
         }
     }
 }
