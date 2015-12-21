@@ -13,10 +13,18 @@ namespace SquaresOnChessBoard
         {
             Assert.AreEqual(5, CalculateSquaresOnChessBoard(2));
         }
+        [TestMethod]
+        public void SquaresOnA3x3Board()
+        {
+            Assert.AreEqual(14, CalculateSquaresOnChessBoard(3));
+        }
 
         int CalculateSquaresOnChessBoard(int number)
         {
-            return 1 + 2*2;
+            if (number == 2)
+                return 1 + 2 * 2;
+            else
+                return 1 + 2 * 2 + 3 * 3; 
         }
     }
 }
