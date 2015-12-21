@@ -20,6 +20,12 @@ namespace CommonPrefix
             Assert.AreEqual("aan", FindCommonPrefix("aanca", "aanaabb"));
         }
 
+        [TestMethod]
+        public void WhenTheStringsHaveNoCommonPrefix()
+        {
+            Assert.AreEqual("NoCommonPrefix", FindCommonPrefix("christmas", "newYear"));
+        }
+
         string FindCommonPrefix(string firstString, string secondString)
         {
             string prefix = string.Empty;
@@ -31,9 +37,12 @@ namespace CommonPrefix
                 }
                 else
                     break; 
-                 
-            }
-            return prefix;
+                  }
+            if (prefix == "")
+                return "NoCommonPrefix";
+            else
+                return prefix; 
+
         }
     }
 }
