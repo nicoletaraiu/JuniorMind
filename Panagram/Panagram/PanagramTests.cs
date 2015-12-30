@@ -11,17 +11,32 @@ namespace Panagram
     [TestClass]
     public class PanagramTests
     {
+       
+
         [TestMethod]
-        public void TestIfTheFirst3LettersAppear()
+        public void TestIfTheFirst10LettersAppear()
         {
-            Assert.AreEqual("Yes", CheckIfPangram("abc12"));      }
+            Assert.AreEqual("Yes", CheckIfPangram("abcdefghij 12"));
+        }
 
         string CheckIfPangram(string phrase)
         {
-            if ((phrase.IndexOf("a") != -1) && (phrase.IndexOf("b") != -1) && (phrase.IndexOf("c") != -1))
+            //  if ((phrase.IndexOf("a") != -1) && (phrase.IndexOf("b") != -1) && (phrase.IndexOf("c") != -1))
+            //   return "Yes";
+            // else
+            string alphabet = "abcdefghij";
+            int counterOfLetters = 0; 
+            for (int i = 0; i < alphabet.Length; i++)
+            {
+                if (phrase.IndexOf(alphabet[i]) != -1)
+                    counterOfLetters++;
+                else break;
+            }
+
+            if (counterOfLetters == 10)
                 return "Yes";
             else
-                return "No";
+                return "No"; 
         }
     }
 }
