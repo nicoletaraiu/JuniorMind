@@ -29,18 +29,15 @@ namespace Panagram
         {
             string phraseAllLower = phrase.ToLower();
             string alphabet = "abcdefghijklmnopqrstuvwxyz";
-            int counterOfLetters = 0; 
+           // int counterOfLetters = 0; 
             for (int i = 0; i < alphabet.Length; i++)
             {
-                if (phraseAllLower.IndexOf(alphabet[i]) != -1)
-                    counterOfLetters++;
-                else break;
+                if (phraseAllLower.IndexOf(alphabet[i]) == -1)
+                    return "Not panagram";
+                
             }
 
-            if (counterOfLetters == 26)
-                return "Panagram";
-            else
-                return "Not panagram"; 
+            return "Panagram";
         }
     }
 }
