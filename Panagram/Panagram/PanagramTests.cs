@@ -14,10 +14,16 @@ namespace Panagram
        
 
         [TestMethod]
-        public void TestIfPhraseifPanagram()
+        public void TestIfPanagram()
         {
             Assert.AreEqual("Panagram", CheckIfPangram("The quick brown fox jumps over the lazy dog"));
         }
+        [TestMethod]
+        public void TestIfNotPanagram()
+        {
+            Assert.AreEqual("Not panagram", CheckIfPangram("The quick brown fox"));
+        }
+
 
         string CheckIfPangram(string phrase)
         {
