@@ -16,9 +16,19 @@ namespace Anagrams
         {
             Assert.AreEqual(6, CalculateNumberOfAnagrams("abc"));
         }
+        [TestMethod]
+        public void AnagramsForALongerWord()
+        {
+            Assert.AreEqual(720, CalculateNumberOfAnagrams("coding"));
+        }
         int CalculateNumberOfAnagrams(string word)
         {
-            return 3*2*1; 
-        }
+            int numberOfAnagrams = 1;
+            for (int i = word.Length; i>0; i--)
+            {
+                numberOfAnagrams *= i; 
+            }
+            return numberOfAnagrams; 
+        } 
     }
 }
