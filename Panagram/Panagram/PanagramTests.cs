@@ -14,29 +14,27 @@ namespace Panagram
        
 
         [TestMethod]
-        public void TestIfTheFirst10LettersAppear()
+        public void TestIfPhraseifPanagram()
         {
-            Assert.AreEqual("Yes", CheckIfPangram("abcdefghij 12"));
+            Assert.AreEqual("Panagram", CheckIfPangram("The quick brown fox jumps over the lazy dog"));
         }
 
         string CheckIfPangram(string phrase)
         {
-            //  if ((phrase.IndexOf("a") != -1) && (phrase.IndexOf("b") != -1) && (phrase.IndexOf("c") != -1))
-            //   return "Yes";
-            // else
-            string alphabet = "abcdefghij";
+            string phraseAllLower = phrase.ToLower();
+            string alphabet = "abcdefghijklmnopqrstuvwxyz";
             int counterOfLetters = 0; 
             for (int i = 0; i < alphabet.Length; i++)
             {
-                if (phrase.IndexOf(alphabet[i]) != -1)
+                if (phraseAllLower.IndexOf(alphabet[i]) != -1)
                     counterOfLetters++;
                 else break;
             }
 
-            if (counterOfLetters == 10)
-                return "Yes";
+            if (counterOfLetters == 26)
+                return "Panagram";
             else
-                return "No"; 
+                return "Not panagram"; 
         }
     }
 }
