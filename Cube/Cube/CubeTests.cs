@@ -13,12 +13,12 @@ namespace Cube
     public class CubeTests
     {
         [TestMethod]
-        public void FirstNumberWithCubeEndingIn8()
+        public void FirstNumberWithCubeEndingIn888()
         {
-            Assert.AreEqual(2, CalculateTheKNumberWithCubeEndingIn8(1));
+            Assert.AreEqual(192, CalculateTheKNumberWithCubeEndingIn888(1));
         }
 
-        int CalculateTheKNumberWithCubeEndingIn8(int k)
+        int CalculateTheKNumberWithCubeEndingIn888(int k)
         {
             int number = 1;
             int cubeOfNumber = 0;
@@ -26,7 +26,7 @@ namespace Cube
             while (numberOfCubesFound != k)
             {
                 cubeOfNumber = number * number * number;
-                if (cubeOfNumber % 10 == 8)
+                if (cubeOfNumber % 10 == 8 && cubeOfNumber %100 /10 == 8 && cubeOfNumber / 100 % 10 == 8)
                     numberOfCubesFound++;
                 else
                     number++; 
