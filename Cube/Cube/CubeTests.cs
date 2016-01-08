@@ -17,19 +17,25 @@ namespace Cube
         {
             Assert.AreEqual(192, CalculateTheKNumberWithCubeEndingIn888(1));
         }
+        [TestMethod]
+        public void Number5thWithCubeEndingIn888()
+        {
+            Assert.AreEqual(1192, CalculateTheKNumberWithCubeEndingIn888(5));
+        }
 
         int CalculateTheKNumberWithCubeEndingIn888(int k)
         {
-            int number = 1;
-            int cubeOfNumber = 0;
-            int numberOfCubesFound = 0; 
+            int number = 192;
+           long  cubeOfNumber = 0;
+            int numberOfCubesFound = 1; 
             while (numberOfCubesFound != k)
             {
+                number++;
                 cubeOfNumber = number * number * number;
-                if (cubeOfNumber % 10 == 8 && cubeOfNumber %100 /10 == 8 && cubeOfNumber / 100 % 10 == 8)
+                if ((cubeOfNumber % 1000 == 888)) 
                     numberOfCubesFound++;
-                else
-                    number++; 
+                
+                    
             }
 
             return number;
