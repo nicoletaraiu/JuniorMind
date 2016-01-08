@@ -9,7 +9,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace CubeSecondTry
 {
     [TestClass]
-    public class CubeSecondTryTests
+    public class CubeSecondMethod
     {
         [TestMethod]
         public void FirstNumberWithCubeEndingIn888()
