@@ -23,19 +23,24 @@ namespace Cube
             Assert.AreEqual(1192, CalculateTheKNumberWithCubeEndingIn888(5));
         }
 
+        [TestMethod]
+        public void Number14thWithCubeEndingIn888()
+        {
+            Assert.AreEqual(3442, CalculateTheKNumberWithCubeEndingIn888(14));
+        }
+
         int CalculateTheKNumberWithCubeEndingIn888(int k)
         {
             int number = 192;
            long  cubeOfNumber = 0;
             int numberOfCubesFound = 1; 
-            while (numberOfCubesFound != k)
+            while (numberOfCubesFound < k)
             {
                 number++;
                 cubeOfNumber = number * number * number;
                 if ((cubeOfNumber % 1000 == 888)) 
                     numberOfCubesFound++;
                 
-                    
             }
 
             return number;
