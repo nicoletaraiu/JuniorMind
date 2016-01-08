@@ -25,35 +25,26 @@ namespace Lunch
         {
             Assert.AreEqual(72, GetNumberOfDaysUntilTheNextLunchMeeting(18, 8));
         }
-
-        int  GetNumberOfDaysUntilTheNextLunchMeeting(int hisDay, int myDay)
+        int GetGCD(int a, int b)
         {
-            int higher;
-            int lower;
-            int leastCommonMultiple = 0;
-            if (myDay > hisDay)
+            while (a != b)
             {
-               higher = myDay; lower =hisDay;
-            }
-            else
-            {
-                higher = hisDay; lower = myDay;
-            }
-            if (higher % lower == 0)
-                leastCommonMultiple =  higher;
-            else
+                if (a > b)
 
-            for (int i = 2; i <= lower; i++)
-            {
-                if ((higher * i) % lower == 0)
-                {
-                        leastCommonMultiple = i * higher;
-                    return leastCommonMultiple;
-                }
-            }
-            return leastCommonMultiple; 
+                    a -= b;
 
-            
+                else
+                    b -= a;
+
+            }
+            return a;
+        }
+
+        int GetNumberOfDaysUntilTheNextLunchMeeting( int hisDay, int myDay)
+        {
+
+
+            return hisDay * myDay / GetGCD(hisDay, myDay); 
          }
     }
 }
