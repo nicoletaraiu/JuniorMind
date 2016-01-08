@@ -12,8 +12,19 @@ namespace CubeSecondTry
     public class CubeSecondTryTests
     {
         [TestMethod]
-        public void TestMethod1()
+        public void FirstNumberWithCubeEndingIn888()
         {
+            Assert.AreEqual(192, CalculateTheKNumberWithCubeEndingIn888(1));
+        }
+        [TestMethod]
+        public void The17thNumberWithCubeEndingIn888()
+        {
+            Assert.AreEqual(4192, CalculateTheKNumberWithCubeEndingIn888(17));
+        }
+
+        int  CalculateTheKNumberWithCubeEndingIn888(int k)
+        {
+            return (k-1)*250 + 192;
         }
     }
 }
