@@ -15,11 +15,32 @@ namespace Lunch
         {
             Assert.AreEqual(4, GetNumberOfDaysUntilTheNextLunchMeeting(2, 4));
         }
-
-       int  GetNumberOfDaysUntilTheNextLunchMeeting(int hisDay, int myDay)
+        [TestMethod]
+        public void DaysUntilNextMeetingForDays4and6()
         {
-                return myDay; 
-        
+            Assert.AreEqual(12, GetNumberOfDaysUntilTheNextLunchMeeting(4, 6));
         }
+
+        int  GetNumberOfDaysUntilTheNextLunchMeeting(int hisDay, int myDay)
+        {
+            int a; int b;
+            if (myDay > hisDay)
+            {
+               a = myDay; b =hisDay;
+            }
+            else
+            {
+                a = hisDay; b = myDay;
+            }
+
+            for (int i = 1; i <= b; i++)
+            {
+                if ((a * i) % b == 0)
+                {
+                    return i * a;
+                }
+            }
+            return b;
+         }
     }
 }
