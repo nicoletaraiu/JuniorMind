@@ -20,6 +20,11 @@ namespace Lunch
         {
             Assert.AreEqual(12, GetNumberOfDaysUntilTheNextLunchMeeting(4, 6));
         }
+        [TestMethod]
+        public void DaysUntilNextMeetingForDays18and8()
+        {
+            Assert.AreEqual(72, GetNumberOfDaysUntilTheNextLunchMeeting(18, 8));
+        }
 
         int  GetNumberOfDaysUntilTheNextLunchMeeting(int hisDay, int myDay)
         {
