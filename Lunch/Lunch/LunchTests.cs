@@ -23,24 +23,32 @@ namespace Lunch
 
         int  GetNumberOfDaysUntilTheNextLunchMeeting(int hisDay, int myDay)
         {
-            int a; int b;
+            int higher;
+            int lower;
+            int leastCommonMultiple = 0;
             if (myDay > hisDay)
             {
-               a = myDay; b =hisDay;
+               higher = myDay; lower =hisDay;
             }
             else
             {
-                a = hisDay; b = myDay;
+                higher = hisDay; lower = myDay;
             }
+            if (higher % lower == 0)
+                leastCommonMultiple =  higher;
+            else
 
-            for (int i = 1; i <= b; i++)
+            for (int i = 2; i <= lower; i++)
             {
-                if ((a * i) % b == 0)
+                if ((higher * i) % lower == 0)
                 {
-                    return i * a;
+                        leastCommonMultiple = i * higher;
+                    return leastCommonMultiple;
                 }
             }
-            return b;
+            return leastCommonMultiple; 
+
+            
          }
     }
 }
