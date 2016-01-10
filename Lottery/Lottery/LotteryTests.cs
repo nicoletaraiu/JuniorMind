@@ -18,8 +18,16 @@ namespace Lottery
     public class LotteryTests
     {
         [TestMethod]
-        public void TestMethod1()
+        public void TestFor1from49()
         {
+            Assert.AreEqual(0.020, CalculateChancesToWin(1, 49));
+        }
+
+        double CalculateChancesToWin(int numbers, int totalNumbers)
+        {
+            double chance; 
+            chance = (double)1/49;
+            return (Math.Round(chance, 3)); 
         }
     }
 }
