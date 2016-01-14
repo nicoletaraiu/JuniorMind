@@ -35,6 +35,17 @@ namespace Anagrams
         {
             Assert.AreEqual(3, GetNumberOfAnagrams("aba"));
         }
+        [TestMethod]
+        public void TestNoOfAnagrams3()
+        {
+            Assert.AreEqual(6, GetNumberOfAnagrams("abc"));
+        }
+
+        [TestMethod]
+        public void TestNoOfAnagrams2()
+        {
+            Assert.AreEqual(105, GetNumberOfAnagrams("aabbaac"));
+        }
 
         string GetUniques(string word)
         {
@@ -74,7 +85,8 @@ namespace Anagrams
             String uniques = GetUniques(word);
             for(int i = 0; i < uniques.Length; i++)
             {
-                noOfAnagrams /= GetFactorial(CountMatches(word, uniques[i])); 
+                int matchesOfUniqueLetter = CountMatches(word, uniques[i]);
+                noOfAnagrams /= GetFactorial(matchesOfUniqueLetter); 
             }
             return noOfAnagrams;
         }
