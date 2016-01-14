@@ -30,6 +30,12 @@ namespace Anagrams
             Assert.AreEqual(120, GetFactorial(5));
         }
 
+        [TestMethod]
+        public void TestNoOfAnagrams()
+        {
+            Assert.AreEqual(3, GetNumberOfAnagrams("aba"));
+        }
+
         string GetUniques(string word)
         {
             string uniques = string.Empty;
@@ -60,6 +66,17 @@ namespace Anagrams
                 factorial *= i;
             }
             return factorial;
+        }
+
+        int GetNumberOfAnagrams(String word)
+        {
+            int noOfAnagrams = GetFactorial(word.Length);
+            String uniques = GetUniques(word);
+            for(int i = 0; i < uniques.Length; i++)
+            {
+                noOfAnagrams /= GetFactorial(CountMatches(word, uniques[i])); 
+            }
+            return noOfAnagrams;
         }
      
     }
