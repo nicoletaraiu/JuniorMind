@@ -17,10 +17,17 @@ namespace Anagrams
         {
             Assert.AreEqual("abcd", GetUniques("aaabbccd"));
         }
+
         [TestMethod]
         public void TestIfMatch()
         {
             Assert.AreEqual(2, CountMatches("casa", 'a'));
+        }
+
+        [TestMethod]
+        public void TestFactorial()
+        {
+            Assert.AreEqual(120, GetFactorial(5));
         }
 
         string GetUniques(string word)
@@ -44,5 +51,16 @@ namespace Anagrams
             }
             return matches;
         }
+
+        int GetFactorial(int numberOfLetters)
+        {
+            int factorial = 1;
+            for (int i = 1; i <= numberOfLetters; i++)
+            {
+                factorial *= i;
+            }
+            return factorial;
+        }
+     
     }
 }
