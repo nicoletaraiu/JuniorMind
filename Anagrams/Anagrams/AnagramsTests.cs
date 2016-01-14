@@ -17,7 +17,12 @@ namespace Anagrams
         {
             Assert.AreEqual("abcd", GetUniques("aaabbccd"));
         }
-      
+        [TestMethod]
+        public void TestIfMatch()
+        {
+            Assert.AreEqual(2, CountMatches("casa", 'a'));
+        }
+
         string GetUniques(string word)
         {
             string uniques = string.Empty;
@@ -28,6 +33,16 @@ namespace Anagrams
                 }
             }
             return uniques;
+        }
+        int CountMatches(string word, char match)
+        {
+            int matches = 0;
+            for (int i = 0; i < word.Length; i++)
+            {
+                if (word[i].Equals(match))
+                    matches++;
+            }
+            return matches;
         }
     }
 }
