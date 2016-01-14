@@ -18,16 +18,22 @@ namespace Lottery
     public class LotteryTests
     {
         [TestMethod]
-        public void TestFor1from49()
+        public void TestFor6from49()
         {
-            Assert.AreEqual(0.020, CalculateChancesToWin(1, 49));
+            Assert.AreEqual(0.0000000715, CalculateChancesToWin(6, 49));
         }
 
-        double CalculateChancesToWin(int numbers, int totalNumbers)
+        double CalculateChancesToWin(double numbers, double totalNumbers)
         {
-            double chance; 
-            chance = (double)1/49;
-            return (Math.Round(chance, 3)); 
+            double chance = 1; 
+            for (double i = numbers; i > 0; i--)
+            {
+                chance *= i / totalNumbers;
+                totalNumbers--;
+            }
+            
+            
+            return (Math.Round(chance, 10)); 
         }
     }
 }
