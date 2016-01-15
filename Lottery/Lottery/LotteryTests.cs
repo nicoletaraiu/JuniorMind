@@ -34,6 +34,12 @@ namespace Lottery
             Assert.AreEqual(0.0009686197, CalulateChancesToGetNnumbers(4, 6, 49));
         }
 
+        [TestMethod]
+        public void TestFor5from40()
+        {
+            Assert.AreEqual(0.0000015197, CalulateChancesToGetNnumbers(5, 5, 40));
+        }
+
         double CalculateChances(double totalNumbers, double numbers)
         {
             double chance = 1; 
