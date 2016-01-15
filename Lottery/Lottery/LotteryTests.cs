@@ -20,20 +20,37 @@ namespace Lottery
         [TestMethod]
         public void TestFor6from49()
         {
-            Assert.AreEqual(0.0000000715, CalculateChancesToWin(6, 49));
+            Assert.AreEqual(0.0000000715, CalulateChancesToGetNnumbers(6, 6, 49));
         }
 
-        double CalculateChancesToWin(double numbers, double totalNumbers)
+        [TestMethod]
+        public void TestFor5from49()
+        {
+            Assert.AreEqual(0.0000184499, CalulateChancesToGetNnumbers(5, 6, 49));
+        }
+        [TestMethod]
+        public void TestFor4from49()
+        {
+            Assert.AreEqual(0.0009686197, CalulateChancesToGetNnumbers(4, 6, 49));
+        }
+
+        double CalculateChances(double totalNumbers, double numbers)
         {
             double chance = 1; 
             for (double i = numbers; i > 0; i--)
             {
-                chance *= i / totalNumbers;
+                chance *= totalNumbers / i;
                 totalNumbers--;
             }
             
-            
-            return (Math.Round(chance, 10)); 
+            return chance; 
+        }
+        double CalulateChancesToGetNnumbers(double n, double allNumbers, double totalNumbers)
+        {
+            double chanceToGetNoIwant = 0;
+            chanceToGetNoIwant = CalculateChances(allNumbers, n) * CalculateChances(totalNumbers - allNumbers, allNumbers - n)/ CalculateChances(totalNumbers, allNumbers);
+            return Math.Round(chanceToGetNoIwant, 10);
+
         }
     }
 }
