@@ -4,6 +4,7 @@ de câte două litere, astfel coloana 27 este AA, 28 - AB, iar coloana 52 cu AZ.
 combinații de 3 litere.
 
 Dacă se dă numărul coloanei află care e combinația de litere corespunzătoare.*/
+
 using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -29,28 +30,33 @@ namespace ExcelColumns
         {
             Assert.AreEqual("AB", GetColumnName(28));
         }
+        [TestMethod]
+        public void TestFor52Column()
+        {
+            Assert.AreEqual("AZ", GetColumnName(52));
+        }
 
 
         string GetChar(int number)
         {
 
-            return Convert.ToChar('A' + number - 1).ToString();
+            return Convert.ToChar('A' + number).ToString();
 
 
         }
 
         string GetColumnName(int columnNumber)
         {
-            if (columnNumber > 26)
+            string columnName = string.Empty;
+            while (columnNumber > 0)
             {
-                return GetChar(columnNumber / 26) + GetChar(columnNumber % 26);
+                columnNumber--;
+                columnName = GetChar(columnNumber % 26) + columnName;
+                columnNumber /= 26; 
             }
-            else
-                return GetChar(columnNumber);
+            
+                return columnName;
         }
 
-        
-
-        
     }
 }
