@@ -15,20 +15,26 @@ namespace ExcelColumns
         [TestMethod]
         public void TestForFirstColumn()
         {
-            Assert.AreEqual("a", GetColumnName(1)); 
+            Assert.AreEqual("A", GetColumnName(1)); 
         }
 
         [TestMethod]
         public void TestFor27Column()
         {
-            Assert.AreEqual("aa", GetColumnName(27));
+            Assert.AreEqual("AA", GetColumnName(27));
+        }
+
+        [TestMethod]
+        public void TestFor28Column()
+        {
+            Assert.AreEqual("AB", GetColumnName(28));
         }
 
 
         string GetChar(int number)
         {
 
-            return Convert.ToChar('a' + number - 1).ToString();
+            return Convert.ToChar('A' + number - 1).ToString();
 
 
         }
