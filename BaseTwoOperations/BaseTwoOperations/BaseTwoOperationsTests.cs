@@ -54,8 +54,14 @@ namespace BaseTwoOperations
         public void TestNOTlogic()
         {
             CollectionAssert.AreEqual( new byte[] { 0, 0, 1 , 1, 0}, NOTlogic(new byte[] { 1, 1, 0, 0, 1 }));
-            CollectionAssert.AreEqual(ConvertToBinary(0 & 5), ANDlogic(ConvertToBinary(0), ConvertToBinary(5)));
-            CollectionAssert.AreEqual(ConvertToBinary(25 & 3), ANDlogic(ConvertToBinary(25), ConvertToBinary(3)));
+           
+        }
+        [TestMethod]
+        public void TestORlogic()
+        {
+            
+            CollectionAssert.AreEqual(ConvertToBinary(0 | 5), ORlogic(ConvertToBinary(0), ConvertToBinary(5)));
+            CollectionAssert.AreEqual(ConvertToBinary(25 | 3),ORlogic(ConvertToBinary(25), ConvertToBinary(3)));
         }
 
         byte [] ConvertToBinary(int number)
@@ -120,6 +126,22 @@ namespace BaseTwoOperations
             return binaryNo;
 
         }
-        
+
+        byte[] ORlogic(byte[] first, byte[] second)
+        {
+            byte[] result = new byte[Math.Max(first.Length, second.Length)];
+            for (int i = 0; i < result.Length; i++)
+            {
+                if ((GetAt(first, i) == 0) && GetAt(second, i) == 0)
+                    result[i] = 0;
+                else
+                    result[i] = 1;
+               
+            }
+            Array.Resize(ref result, result.Length - CountZeros(result));
+            Array.Reverse(result);
+            return result;
+        }
+
     }
 }
