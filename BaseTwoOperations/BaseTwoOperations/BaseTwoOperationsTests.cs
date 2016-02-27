@@ -156,10 +156,10 @@ namespace BaseTwoOperations
             byte[] result = new byte[Math.Max(first.Length, second.Length)];
             for (int i = 0; i < result.Length; i++)
             {
-                if ((GetAt(first, i) == 1) && (GetAt(second, i) == 0) || (GetAt(first, i) == 0) && (GetAt(second, i) == 1))
-                    result[i] = 1;
-                else
+                if ((GetAt(first, i)  ==  GetAt(second, i)))
                     result[i] = 0;
+                else
+                    result[i] = 1;
 
             }
             Array.Resize(ref result, result.Length - CountZeros(result));
