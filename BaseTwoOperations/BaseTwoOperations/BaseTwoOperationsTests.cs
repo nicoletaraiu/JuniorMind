@@ -115,6 +115,14 @@ namespace BaseTwoOperations
             return count;
         }
 
+        byte[] NOTlogic(byte[] binaryNo)
+        {
+            for (int i = 0; i < binaryNo.Length; i++)
+                binaryNo[i] = (binaryNo[i] == 0) ? (byte)1 : (byte)0;
+            return binaryNo;
+
+        }
+
         byte[] ANDlogic(byte [] first, byte [] second)
         {
             byte[] result = new byte[Math.Max(first.Length, second.Length)];
@@ -127,15 +135,7 @@ namespace BaseTwoOperations
             return result;
         }
 
-        byte[] NOTlogic(byte [] binaryNo)
-        {
-            for(int i = 0; i < binaryNo.Length; i++)
-             binaryNo[i] = (binaryNo[i] == 0) ? (byte)1 : (byte)0;
-            return binaryNo;
-
-        }
-
-        byte[] ORlogic(byte[] first, byte[] second)
+       byte[] ORlogic(byte[] first, byte[] second)
         {
             byte[] result = new byte[Math.Max(first.Length, second.Length)];
             for (int i = 0; i < result.Length; i++)
