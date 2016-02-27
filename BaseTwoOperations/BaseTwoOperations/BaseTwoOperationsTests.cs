@@ -50,6 +50,14 @@ namespace BaseTwoOperations
             CollectionAssert.AreEqual(ConvertToBinary(25 & 3), ANDlogic(ConvertToBinary(25), ConvertToBinary(3)));
         }
 
+        [TestMethod]
+        public void TestNOTlogic()
+        {
+            CollectionAssert.AreEqual( new byte[] { 0, 0, 1 , 1, 0}, NOTlogic(new byte[] { 1, 1, 0, 0, 1 }));
+            CollectionAssert.AreEqual(ConvertToBinary(0 & 5), ANDlogic(ConvertToBinary(0), ConvertToBinary(5)));
+            CollectionAssert.AreEqual(ConvertToBinary(25 & 3), ANDlogic(ConvertToBinary(25), ConvertToBinary(3)));
+        }
+
         byte [] ConvertToBinary(int number)
         {
             byte[] converted = new byte[0];
@@ -103,6 +111,14 @@ namespace BaseTwoOperations
             Array.Resize(ref result, result.Length - CountZeros(result));
             Array.Reverse(result); 
             return result;
+        }
+
+        byte[] NOTlogic(byte [] binaryNo)
+        {
+            for(int i = 0; i < binaryNo.Length; i++)
+             binaryNo[i] = (binaryNo[i] == 0) ? (byte)1 : (byte)0;
+            return binaryNo;
+
         }
         
     }
