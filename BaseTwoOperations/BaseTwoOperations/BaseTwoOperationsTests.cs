@@ -21,8 +21,26 @@ namespace BaseTwoOperations
     public class BaseTwoOperationsTests
     {
         [TestMethod]
-        public void TestMethod1()
+        public void TestConversion()
         {
+            CollectionAssert.AreEqual(new byte[] { 1, 0 }, ConvertToBinary(2));
+            CollectionAssert.AreEqual(new byte[] { 1, 0, 1 }, ConvertToBinary(5)); 
+        }
+     
+        byte [] ConvertToBinary(int number)
+        {
+            byte[] converted = new byte[0];
+            int pos = 0;
+            while (number > 0)
+            {
+                
+                Array.Resize(ref converted,pos + 1);
+                converted[pos++] = (byte)(number % 2);
+                number /= 2;
+             
+            }
+            Array.Reverse(converted);
+            return converted;
         }
     }
 }
