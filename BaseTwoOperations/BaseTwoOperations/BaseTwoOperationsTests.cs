@@ -64,6 +64,14 @@ namespace BaseTwoOperations
             CollectionAssert.AreEqual(ConvertToBinary(25 | 3),ORlogic(ConvertToBinary(25), ConvertToBinary(3)));
         }
 
+        [TestMethod]
+        public void TestXORlogic()
+        {
+
+            CollectionAssert.AreEqual(ConvertToBinary(0 ^ 5), XORlogic(ConvertToBinary(0), ConvertToBinary(5)));
+            CollectionAssert.AreEqual(ConvertToBinary(25 ^ 3), XORlogic(ConvertToBinary(25), ConvertToBinary(3)));
+        }
+
         byte [] ConvertToBinary(int number)
         {
             byte[] converted = new byte[0];
@@ -137,6 +145,22 @@ namespace BaseTwoOperations
                 else
                     result[i] = 1;
                
+            }
+            Array.Resize(ref result, result.Length - CountZeros(result));
+            Array.Reverse(result);
+            return result;
+        }
+
+        byte[] XORlogic(byte[] first, byte[] second)
+        {
+            byte[] result = new byte[Math.Max(first.Length, second.Length)];
+            for (int i = 0; i < result.Length; i++)
+            {
+                if ((GetAt(first, i) == 1) && (GetAt(second, i) == 0) || (GetAt(first, i) == 0) && (GetAt(second, i) == 1))
+                    result[i] = 1;
+                else
+                    result[i] = 0;
+
             }
             Array.Resize(ref result, result.Length - CountZeros(result));
             Array.Reverse(result);
