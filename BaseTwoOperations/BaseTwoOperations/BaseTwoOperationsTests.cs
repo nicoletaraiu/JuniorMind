@@ -26,7 +26,14 @@ namespace BaseTwoOperations
             CollectionAssert.AreEqual(new byte[] { 1, 0 }, ConvertToBinary(2));
             CollectionAssert.AreEqual(new byte[] { 1, 0, 1 }, ConvertToBinary(5)); 
         }
-     
+
+        [TestMethod]
+        public void TestGetAt()
+        {
+            Assert.AreEqual(0, GetAt(new byte[] { 0,1}, 3));
+            Assert.AreEqual(1, GetAt(new byte[] { 1, 0, 1, 1 }, 3));
+        }
+
         byte [] ConvertToBinary(int number)
         {
             byte[] converted = new byte[0];
@@ -41,6 +48,11 @@ namespace BaseTwoOperations
             }
             Array.Reverse(converted);
             return converted;
+        }
+
+        byte  GetAt(byte [] binaryNo, int position)
+        {
+            return (byte)((position < binaryNo.Length) ? binaryNo[binaryNo.Length - position - 1] : 0); 
         }
     }
 }
