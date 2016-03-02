@@ -158,17 +158,7 @@ namespace BaseTwoOperations
             byte[] result = new byte[Math.Max(first.Length, second.Length)];
             for (int i = 0; i < result.Length; i++)
             {
-
-                switch (logicOp)
-                {
-                    case "And": result[i] = And(GetAt(first, i), GetAt(second, i));
-                        break;
-                    case "Or": result[i] = Or(GetAt(first, i), GetAt(second, i));
-                        break;
-                    case "Xor": result[i] = XOr(GetAt(first, i), GetAt(second, i));
-                        break;
-
-                }
+                result[i] = ExecuteOperationSwitch(GetAt(first, i), GetAt(second, i), logicOp);
 
             }
             Array.Resize(ref result, result.Length - CountZeros(result));
@@ -177,7 +167,19 @@ namespace BaseTwoOperations
 
         }
 
-
-
+        byte ExecuteOperationSwitch(byte first, byte second, string logicOp)
+        {
+            switch (logicOp)
+            {
+                case "And":
+                    return  And(first, second);
+                    
+                case "Or":
+                    return Or(first, second);
+                    
+                
+             }
+            return XOr(first, second);
+        }
     }
 }
