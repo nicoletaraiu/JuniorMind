@@ -125,14 +125,7 @@ namespace BaseTwoOperations
 
         byte[] ANDlogic(byte [] first, byte [] second)
         {
-            byte[] result = new byte[Math.Max(first.Length, second.Length)];
-            for (int i = 0; i < result.Length; i++)
-            {
-                result[i] = And(GetAt(first, i), GetAt(second, i)); 
-            }
-            Array.Resize(ref result, result.Length - CountZeros(result));
-            Array.Reverse(result); 
-            return result;
+            return ExecuteOperation(first, second, "And");
         }
 
         byte And(byte first, byte second)
@@ -142,16 +135,7 @@ namespace BaseTwoOperations
 
         byte[] ORlogic(byte[] first, byte[] second)
         {
-            byte[] result = new byte[Math.Max(first.Length, second.Length)];
-            for (int i = 0; i < result.Length; i++)
-            {
-
-                result[i] = Or(GetAt(first, i), GetAt(second, i));
-               
-            }
-            Array.Resize(ref result, result.Length - CountZeros(result));
-            Array.Reverse(result);
-            return result;
+            return ExecuteOperation(first, second, "Or");
         }
 
         byte Or(byte first, byte second)
@@ -161,22 +145,38 @@ namespace BaseTwoOperations
 
         byte[] XORlogic(byte[] first, byte[] second)
         {
-            byte[] result = new byte[Math.Max(first.Length, second.Length)];
-            for (int i = 0; i < result.Length; i++)
-            {
-
-                result[i] = XOr(GetAt(first, i), GetAt(second, i));
-
-            }
-            Array.Resize(ref result, result.Length - CountZeros(result));
-            Array.Reverse(result);
-            return result;
+            return ExecuteOperation(first, second, "Xor");
         }
 
         byte XOr(byte first, byte second)
         {
             return first == second ? (byte)0 : (byte)1;
         }
+
+        byte[] ExecuteOperation( byte[] first, byte[] second, string logicOp)
+        {
+            byte[] result = new byte[Math.Max(first.Length, second.Length)];
+            for (int i = 0; i < result.Length; i++)
+            {
+
+                switch (logicOp)
+                {
+                    case "And": result[i] = And(GetAt(first, i), GetAt(second, i));
+                        break;
+                    case "Or": result[i] = Or(GetAt(first, i), GetAt(second, i));
+                        break;
+                    case "Xor": result[i] = XOr(GetAt(first, i), GetAt(second, i));
+                        break;
+
+                }
+
+            }
+            Array.Resize(ref result, result.Length - CountZeros(result));
+            Array.Reverse(result);
+            return result;
+
+        }
+
 
 
     }
