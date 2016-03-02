@@ -128,22 +128,25 @@ namespace BaseTwoOperations
             byte[] result = new byte[Math.Max(first.Length, second.Length)];
             for (int i = 0; i < result.Length; i++)
             {
-                result[i] = (byte)(GetAt(first, i) * GetAt(second, i)); 
+                result[i] = And(GetAt(first, i), GetAt(second, i)); 
             }
             Array.Resize(ref result, result.Length - CountZeros(result));
             Array.Reverse(result); 
             return result;
         }
 
-       byte[] ORlogic(byte[] first, byte[] second)
+        byte And(byte first, byte second)
+        {
+            return (byte)(first * second);
+        }
+
+        byte[] ORlogic(byte[] first, byte[] second)
         {
             byte[] result = new byte[Math.Max(first.Length, second.Length)];
             for (int i = 0; i < result.Length; i++)
             {
-                if ((GetAt(first, i) == 0) && GetAt(second, i) == 0)
-                    result[i] = 0;
-                else
-                    result[i] = 1;
+
+                result[i] = Or(GetAt(first, i), GetAt(second, i));
                
             }
             Array.Resize(ref result, result.Length - CountZeros(result));
@@ -151,21 +154,30 @@ namespace BaseTwoOperations
             return result;
         }
 
+        byte Or(byte first, byte second)
+        {
+            return first == 0 && second == 0 ? (byte)0 : (byte)1; 
+        }
+
         byte[] XORlogic(byte[] first, byte[] second)
         {
             byte[] result = new byte[Math.Max(first.Length, second.Length)];
             for (int i = 0; i < result.Length; i++)
             {
-                if ((GetAt(first, i)  ==  GetAt(second, i)))
-                    result[i] = 0;
-                else
-                    result[i] = 1;
+
+                result[i] = XOr(GetAt(first, i), GetAt(second, i));
 
             }
             Array.Resize(ref result, result.Length - CountZeros(result));
             Array.Reverse(result);
             return result;
         }
+
+        byte XOr(byte first, byte second)
+        {
+            return first == second ? (byte)0 : (byte)1;
+        }
+
 
     }
 }
