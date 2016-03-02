@@ -71,6 +71,14 @@ namespace BaseTwoOperations
             CollectionAssert.AreEqual(ConvertToBinary(0 ^ 5), XORlogic(ConvertToBinary(0), ConvertToBinary(5)));
             CollectionAssert.AreEqual(ConvertToBinary(25 ^ 3), XORlogic(ConvertToBinary(25), ConvertToBinary(3)));
         }
+        [TestMethod]
+        public void LessThan()
+        {
+
+            Assert.AreEqual(0 < 5, LessThan(ConvertToBinary(0), ConvertToBinary(5)));
+            Assert.AreEqual(5 < 25, LessThan(ConvertToBinary(5), ConvertToBinary(25)));
+            Assert.AreEqual(30 < 25, LessThan(ConvertToBinary(30), ConvertToBinary(25)));
+        }
 
         byte [] ConvertToBinary(int number)
         {
@@ -180,6 +188,17 @@ namespace BaseTwoOperations
                 
              }
             return XOr(first, second);
+        }
+
+        bool LessThan(byte[] first, byte[] second)
+        {  
+           for(int i = Math.Max(first.Length, second.Length); i > 0; i--)
+            {
+                if (GetAt(first, i) < GetAt(second, i))
+                    return true;
+            }
+            return false;
+            
         }
     }
 }
