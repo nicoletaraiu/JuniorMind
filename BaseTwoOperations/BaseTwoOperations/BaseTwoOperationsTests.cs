@@ -98,7 +98,8 @@ namespace BaseTwoOperations
         {
 
             CollectionAssert.AreEqual(ConvertToBinary(15 - 5), Substraction(ConvertToBinary(15), ConvertToBinary(5)));
-            CollectionAssert.AreEqual(ConvertToBinary(25 - 18), XORlogic(ConvertToBinary(25), ConvertToBinary(18)));
+            CollectionAssert.AreEqual(ConvertToBinary(25 - 18), Substraction(ConvertToBinary(25), ConvertToBinary(18)));
+            CollectionAssert.AreEqual(null, Substraction(ConvertToBinary(12), ConvertToBinary(15)));
         }
 
         byte[] ConvertToBinary(int number)
@@ -257,8 +258,7 @@ namespace BaseTwoOperations
                 return result;
             }
             return null;
-
-        }
+       }
     }
 }
 
