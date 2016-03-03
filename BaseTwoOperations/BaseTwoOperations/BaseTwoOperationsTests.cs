@@ -31,7 +31,7 @@ namespace BaseTwoOperations
         [TestMethod]
         public void TestGetAt()
         {
-            Assert.AreEqual(0, GetAt(new byte[] { 0,1}, 3));
+            Assert.AreEqual(0, GetAt(new byte[] { 0, 1 }, 3));
             Assert.AreEqual(1, GetAt(new byte[] { 1, 0, 1, 1 }, 3));
         }
 
@@ -53,15 +53,15 @@ namespace BaseTwoOperations
         [TestMethod]
         public void TestNOTlogic()
         {
-            CollectionAssert.AreEqual( new byte[] { 0, 0, 1 , 1, 0}, NOTlogic(new byte[] { 1, 1, 0, 0, 1 }));
-           
+            CollectionAssert.AreEqual(new byte[] { 0, 0, 1, 1, 0 }, NOTlogic(new byte[] { 1, 1, 0, 0, 1 }));
+
         }
         [TestMethod]
         public void TestORlogic()
         {
-            
+
             CollectionAssert.AreEqual(ConvertToBinary(0 | 5), ORlogic(ConvertToBinary(0), ConvertToBinary(5)));
-            CollectionAssert.AreEqual(ConvertToBinary(25 | 3),ORlogic(ConvertToBinary(25), ConvertToBinary(3)));
+            CollectionAssert.AreEqual(ConvertToBinary(25 | 3), ORlogic(ConvertToBinary(25), ConvertToBinary(3)));
         }
 
         [TestMethod]
@@ -78,9 +78,19 @@ namespace BaseTwoOperations
             Assert.AreEqual(0 < 5, LessThan(ConvertToBinary(0), ConvertToBinary(5)));
             Assert.AreEqual(5 < 25, LessThan(ConvertToBinary(5), ConvertToBinary(25)));
             Assert.AreEqual(30 < 25, LessThan(ConvertToBinary(30), ConvertToBinary(25)));
+            Assert.AreEqual(8 < 2, LessThan(ConvertToBinary(8), ConvertToBinary(2)));
+
         }
 
-        byte [] ConvertToBinary(int number)
+       /* [TestMethod]
+        public void Addition()
+        {
+
+            CollectionAssert.AreEqual(ConvertToBinary(7 + 8), Addition(ConvertToBinary(7), ConvertToBinary(8)));
+            CollectionAssert.AreEqual(ConvertToBinary(26 + 9), Addition(ConvertToBinary(26), ConvertToBinary(9)));
+        }*/
+
+        byte[] ConvertToBinary(int number)
         {
             byte[] converted = new byte[0];
             int pos = 0;
@@ -99,19 +109,19 @@ namespace BaseTwoOperations
 
                 }
             }
-                Array.Reverse(converted);
-                return converted;
-            }
-
-        byte  GetAt(byte [] binaryNo, int position)
-        {
-            return (byte)((position < binaryNo.Length) ? binaryNo[binaryNo.Length - position - 1] : 0); 
+            Array.Reverse(converted);
+            return converted;
         }
-       
-        int CountZeros(byte [] binaryNo)
+
+        byte GetAt(byte[] binaryNo, int position)
+        {
+            return (byte)((position < binaryNo.Length) ? binaryNo[binaryNo.Length - position - 1] : 0);
+        }
+
+        int CountZeros(byte[] binaryNo)
         {
             int count = 0;
-            int i = binaryNo.Length-1;
+            int i = binaryNo.Length - 1;
             while (i >= 1)
             {
                 if (binaryNo[i] == 0)
@@ -131,7 +141,7 @@ namespace BaseTwoOperations
 
         }
 
-        byte[] ANDlogic(byte [] first, byte [] second)
+        byte[] ANDlogic(byte[] first, byte[] second)
         {
             return ExecuteOperation(first, second, "And");
         }
@@ -148,7 +158,7 @@ namespace BaseTwoOperations
 
         byte Or(byte first, byte second)
         {
-            return first == 0 && second == 0 ? (byte)0 : (byte)1; 
+            return first == 0 && second == 0 ? (byte)0 : (byte)1;
         }
 
         byte[] XORlogic(byte[] first, byte[] second)
@@ -161,7 +171,7 @@ namespace BaseTwoOperations
             return first == second ? (byte)0 : (byte)1;
         }
 
-        byte[] ExecuteOperation( byte[] first, byte[] second, string logicOp)
+        byte[] ExecuteOperation(byte[] first, byte[] second, string logicOp)
         {
             byte[] result = new byte[Math.Max(first.Length, second.Length)];
             for (int i = 0; i < result.Length; i++)
@@ -180,25 +190,28 @@ namespace BaseTwoOperations
             switch (logicOp)
             {
                 case "And":
-                    return  And(first, second);
-                    
+                    return And(first, second);
+
                 case "Or":
                     return Or(first, second);
-                    
-                
-             }
+
+
+            }
             return XOr(first, second);
         }
 
         bool LessThan(byte[] first, byte[] second)
-        {  
-           for(int i = Math.Max(first.Length, second.Length); i > 0; i--)
+        {
+            for (int i = Math.Max(first.Length, second.Length); i > 0; i--)
             {
                 if (GetAt(first, i) < GetAt(second, i))
                     return true;
+                else if (GetAt(first, i) > GetAt(second, i))
+                    return false;
             }
             return false;
-            
+
         }
+
     }
 }
