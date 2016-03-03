@@ -102,6 +102,16 @@ namespace BaseTwoOperations
             CollectionAssert.AreEqual(null, Substraction(ConvertToBinary(12), ConvertToBinary(15)));
         }
 
+        [TestMethod]
+        public void Multiplication()
+        {
+
+            CollectionAssert.AreEqual(ConvertToBinary(3 * 4), Multiplication(ConvertToBinary(3), ConvertToBinary(4)));
+            CollectionAssert.AreEqual(ConvertToBinary(5 * 12), Multiplication(ConvertToBinary(5), ConvertToBinary(12)));
+            CollectionAssert.AreEqual(ConvertToBinary(4 * 3), Multiplication(ConvertToBinary(4), ConvertToBinary(3)));
+
+        }
+
         byte[] ConvertToBinary(int number)
         {
             byte[] converted = new byte[0];
@@ -258,9 +268,23 @@ namespace BaseTwoOperations
                 return result;
             }
             return null;
-       }
+        }
+
+        byte[] Multiplication(byte[] first, byte[] second)
+        {
+            byte[] result = { 0 };
+            for (byte[] i = { 0 }; LessThan(i, second); i = Addition(i, new byte[] { 1 }))
+            {
+                result = Addition(result, first);
+            }
+            
+            return result;
+         
+        }
+
     }
 }
+
 
 
 
