@@ -82,13 +82,15 @@ namespace BaseTwoOperations
 
         }
 
-       /* [TestMethod]
+        [TestMethod]
         public void Addition()
         {
 
             CollectionAssert.AreEqual(ConvertToBinary(7 + 8), Addition(ConvertToBinary(7), ConvertToBinary(8)));
             CollectionAssert.AreEqual(ConvertToBinary(26 + 9), Addition(ConvertToBinary(26), ConvertToBinary(9)));
-        }*/
+            CollectionAssert.AreEqual(ConvertToBinary(25 + 5), Addition(ConvertToBinary(25), ConvertToBinary(5)));
+            CollectionAssert.AreEqual(ConvertToBinary(4 + 18), Addition(ConvertToBinary(4), ConvertToBinary(18)));
+        }
 
         byte[] ConvertToBinary(int number)
         {
@@ -213,5 +215,24 @@ namespace BaseTwoOperations
 
         }
 
+        byte[] Addition(byte[] first, byte[] second)
+        {
+            byte[] result = new byte[Math.Max(first.Length, second.Length) +1];
+            byte c = 0;
+            for (int i = 0; i < result.Length -1; i++)
+            {
+                result[i] = (byte)((c + GetAt(first, i) + GetAt(second, i)) % 2);
+                c = (byte)((c + GetAt(first, i) + GetAt(second, i)) / 2);
+            }
+            result[result.Length - 1] = c;
+           
+
+            Array.Resize(ref result, result.Length - CountZeros(result));
+            Array.Reverse(result);
+            return result;
+        }
     }
 }
+
+
+   
