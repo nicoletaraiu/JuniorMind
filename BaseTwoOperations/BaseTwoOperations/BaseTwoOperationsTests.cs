@@ -40,6 +40,7 @@ namespace BaseTwoOperations
         {
             Assert.AreEqual(3, CountZeros(new byte[] { 0, 1, 0, 0, 0 }));
             Assert.AreEqual(2, CountZeros(new byte[] { 0, 0, 0 }));
+            Assert.AreEqual(2, CountZeros(new byte[] { 1, 1, 1, 0, 0 }));
         }
 
         [TestMethod]
@@ -90,6 +91,14 @@ namespace BaseTwoOperations
             CollectionAssert.AreEqual(ConvertToBinary(26 + 9), Addition(ConvertToBinary(26), ConvertToBinary(9)));
             CollectionAssert.AreEqual(ConvertToBinary(25 + 5), Addition(ConvertToBinary(25), ConvertToBinary(5)));
             CollectionAssert.AreEqual(ConvertToBinary(4 + 18), Addition(ConvertToBinary(4), ConvertToBinary(18)));
+        }
+
+        [TestMethod]
+        public void Substraction()
+        {
+
+            CollectionAssert.AreEqual(ConvertToBinary(15 - 5), Substraction(ConvertToBinary(15), ConvertToBinary(5)));
+            CollectionAssert.AreEqual(ConvertToBinary(25 - 18), XORlogic(ConvertToBinary(25), ConvertToBinary(18)));
         }
 
         byte[] ConvertToBinary(int number)
@@ -217,22 +226,42 @@ namespace BaseTwoOperations
 
         byte[] Addition(byte[] first, byte[] second)
         {
-            byte[] result = new byte[Math.Max(first.Length, second.Length) +1];
+            byte[] result = new byte[Math.Max(first.Length, second.Length) + 1];
             byte c = 0;
-            for (int i = 0; i < result.Length -1; i++)
+            for (int i = 0; i < result.Length - 1; i++)
             {
-                result[i] = (byte)((c + GetAt(first, i) + GetAt(second, i)) % 2);
-                c = (byte)((c + GetAt(first, i) + GetAt(second, i)) / 2);
+                byte add = (byte)(c + GetAt(first, i) + GetAt(second, i));
+                result[i] = (byte)(add % 2);
+                c = (byte)(add / 2);
             }
             result[result.Length - 1] = c;
-           
-
             Array.Resize(ref result, result.Length - CountZeros(result));
             Array.Reverse(result);
             return result;
         }
+
+        byte[] Substraction(byte[] first, byte[] second)
+        {
+            if (LessThan(second, first))
+            {
+                int k = 0;
+                byte[] result = new byte[Math.Max(first.Length, second.Length)];
+                for (int i = 0; i < result.Length; i++)
+                {
+                    int diff = 2 + GetAt(first, i) - GetAt(second, i) - k;
+                    result[i] = (byte)(diff % 2);
+                    k = diff < 2 ? 1 : 0;
+                }
+                Array.Resize(ref result, result.Length - CountZeros(result));
+                Array.Reverse(result);
+                return result;
+            }
+            return null;
+
+        }
     }
 }
+
 
 
    
