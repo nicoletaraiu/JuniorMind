@@ -147,6 +147,22 @@ namespace BaseTwoOperations
             Assert.AreEqual(11 > 24, GraterThan(ConvertToBinary(11), ConvertToBinary(24)));
         }
 
+        [TestMethod]
+        public void Equal()
+        {
+            Assert.AreEqual(6 == 6, Equal(ConvertToBinary(6), ConvertToBinary(6)));
+            Assert.AreEqual(8 == 8, Equal(ConvertToBinary(8), ConvertToBinary(8)));
+            Assert.AreEqual(11 == 24, Equal(ConvertToBinary(11), ConvertToBinary(24)));
+        }
+
+        [TestMethod]
+        public void NotEqual()
+        {
+            Assert.AreEqual(6 != 9, NotEqual(ConvertToBinary(6), ConvertToBinary(9)));
+            Assert.AreEqual(8 != 8, NotEqual(ConvertToBinary(8), ConvertToBinary(8)));
+            Assert.AreEqual(11 != 24, NotEqual(ConvertToBinary(11), ConvertToBinary(24)));
+        }
+
 
         byte[] ConvertToBinary(int number)
         {
@@ -348,6 +364,20 @@ namespace BaseTwoOperations
                 return true;
             return false; 
         }
+        bool Equal(byte[] first, byte[] second)
+        {
+            if (!LessThan(second, first) && !LessThan(first, second))
+                return true;
+            return false;
+        }
+
+        bool NotEqual(byte[] first, byte[] second)
+        {
+            if (LessThan(first, second) || LessThan(second, first))
+                return true;
+            return false;
+        }
+
 
     }
 }
