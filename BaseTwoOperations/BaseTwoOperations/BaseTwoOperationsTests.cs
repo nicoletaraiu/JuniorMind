@@ -87,9 +87,9 @@ namespace BaseTwoOperations
         public void RightHandShift()
         {
 
-            CollectionAssert.AreEqual(ConvertToBinary(8>>3), RightHandShift(ConvertToBinary(8),3));
-            CollectionAssert.AreEqual(ConvertToBinary(25>>4), RightHandShift(ConvertToBinary(25), 4));
-            
+            CollectionAssert.AreEqual(ConvertToBinary(8 >> 3), RightHandShift(ConvertToBinary(8), 3));
+            CollectionAssert.AreEqual(ConvertToBinary(25 >> 4), RightHandShift(ConvertToBinary(25), 4));
+
 
         }
         [TestMethod]
@@ -127,22 +127,28 @@ namespace BaseTwoOperations
 
             CollectionAssert.AreEqual(ConvertToBinary(3 * 4), Multiplication(ConvertToBinary(3), ConvertToBinary(4)));
             CollectionAssert.AreEqual(ConvertToBinary(5 * 12), Multiplication(ConvertToBinary(5), ConvertToBinary(12)));
-           
+
             CollectionAssert.AreEqual(ConvertToBinary(12 * 14), Multiplication(ConvertToBinary(12), ConvertToBinary(14)));
             CollectionAssert.AreEqual(ConvertToBinary(10 * 5), Multiplication(ConvertToBinary(10), ConvertToBinary(5)));
 
-           
-      }
-      /*  [TestMethod]
+
+        }
+        [TestMethod]
         public void Division()
         {
+            CollectionAssert.AreEqual(ConvertToBinary(10 / 5), Division(ConvertToBinary(10), ConvertToBinary(5)));
+        }
 
-            CollectionAssert.AreEqual(ConvertToBinary(6 / 3), Multiplication(ConvertToBinary(6), ConvertToBinary(3)));
-            //CollectionAssert.AreEqual(ConvertToBinary(5 * 12), Multiplication(ConvertToBinary(5), ConvertToBinary(12)));
-        }*/
+        [TestMethod]
+        public void GraterThan()
+        {
+            Assert.AreEqual(6 > 3, GraterThan(ConvertToBinary(6), ConvertToBinary(3)));
+            Assert.AreEqual(8 > 2, GraterThan(ConvertToBinary(8), ConvertToBinary(2)));
+            Assert.AreEqual(11 > 24, GraterThan(ConvertToBinary(11), ConvertToBinary(24)));
+        }
 
 
-            byte[] ConvertToBinary(int number)
+        byte[] ConvertToBinary(int number)
         {
             byte[] converted = new byte[0];
             int pos = 0;
@@ -252,19 +258,19 @@ namespace BaseTwoOperations
             return XOr(first, second);
         }
 
-        bool LessThan(byte[] first, byte[] second)
-        {
-            for (int i = Math.Max(first.Length, second.Length); i > 0; i--)
-            {
-                if (GetAt(first, i) < GetAt(second, i))
-                    return true;
-                else if (GetAt(first, i) > GetAt(second, i))
-                    return false;
-            }
-            return false;
+         bool LessThan(byte[] first, byte[] second)
+         {
+             for (int i = Math.Max(first.Length, second.Length) -1; i >= 0; i--)
+             {
+                 if (GetAt(first, i) < GetAt(second, i))
+                     return true;
+                 else if (GetAt(first, i) > GetAt(second, i))
+                     return false;
+             }
+             return false;
 
-        }
-
+         }
+       
         byte[] RightHandShift(byte[] binaryNo, int number)
         {
             Array.Resize(ref binaryNo, binaryNo.Length - number);
@@ -319,24 +325,32 @@ namespace BaseTwoOperations
             {
                 result = Addition(result, first);
             }
-            
+
             return result;
-         
+
         }
 
-      /*  byte[] Division(byte[] first, byte[] second)
+        byte[] Division(byte[] first, byte[] second)
         {
             byte[] result = { 0 };
-           while(LessThan(second, first))
+            while (LessThan(new byte[] { 0 }, first))
             {
-                Substraction(first, second);
-                Addition( result, new byte[] { 1 });
+                first = Substraction(first, second);
+                result = Addition(result, new byte[] { 1 });
             }
-            return result;*/
+            return result;
 
+        }
+
+        bool GraterThan(byte [] first, byte[] second)
+        {
+            if (LessThan(second, first))
+                return true;
+            return false; 
         }
 
     }
+}
 
 
 
