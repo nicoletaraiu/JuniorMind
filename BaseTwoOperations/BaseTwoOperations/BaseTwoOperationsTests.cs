@@ -84,6 +84,25 @@ namespace BaseTwoOperations
         }
 
         [TestMethod]
+        public void RightHandShift()
+        {
+
+            CollectionAssert.AreEqual(ConvertToBinary(8>>3), RightHandShift(ConvertToBinary(8),3));
+            CollectionAssert.AreEqual(ConvertToBinary(25>>4), RightHandShift(ConvertToBinary(25), 4));
+            
+
+        }
+        [TestMethod]
+        public void LeftHandShift()
+        {
+
+            CollectionAssert.AreEqual(ConvertToBinary(8 << 3), LeftHandShift(ConvertToBinary(8), 3));
+            CollectionAssert.AreEqual(ConvertToBinary(25 << 4), LeftHandShift(ConvertToBinary(25), 4));
+
+
+        }
+
+        [TestMethod]
         public void Addition()
         {
 
@@ -108,11 +127,22 @@ namespace BaseTwoOperations
 
             CollectionAssert.AreEqual(ConvertToBinary(3 * 4), Multiplication(ConvertToBinary(3), ConvertToBinary(4)));
             CollectionAssert.AreEqual(ConvertToBinary(5 * 12), Multiplication(ConvertToBinary(5), ConvertToBinary(12)));
-            CollectionAssert.AreEqual(ConvertToBinary(4 * 3), Multiplication(ConvertToBinary(4), ConvertToBinary(3)));
+           
+            CollectionAssert.AreEqual(ConvertToBinary(12 * 14), Multiplication(ConvertToBinary(12), ConvertToBinary(14)));
+            CollectionAssert.AreEqual(ConvertToBinary(10 * 5), Multiplication(ConvertToBinary(10), ConvertToBinary(5)));
 
-        }
+           
+      }
+      /*  [TestMethod]
+        public void Division()
+        {
 
-        byte[] ConvertToBinary(int number)
+            CollectionAssert.AreEqual(ConvertToBinary(6 / 3), Multiplication(ConvertToBinary(6), ConvertToBinary(3)));
+            //CollectionAssert.AreEqual(ConvertToBinary(5 * 12), Multiplication(ConvertToBinary(5), ConvertToBinary(12)));
+        }*/
+
+
+            byte[] ConvertToBinary(int number)
         {
             byte[] converted = new byte[0];
             int pos = 0;
@@ -235,13 +265,25 @@ namespace BaseTwoOperations
 
         }
 
+        byte[] RightHandShift(byte[] binaryNo, int number)
+        {
+            Array.Resize(ref binaryNo, binaryNo.Length - number);
+            return binaryNo;
+        }
+
+        byte[] LeftHandShift(byte[] binaryNo, int number)
+        {
+            Array.Resize(ref binaryNo, binaryNo.Length + number);
+            return binaryNo;
+        }
+
         byte[] Addition(byte[] first, byte[] second)
         {
             byte[] result = new byte[Math.Max(first.Length, second.Length) + 1];
             byte c = 0;
             for (int i = 0; i < result.Length - 1; i++)
             {
-                byte add = (byte)(c + GetAt(first, i) + GetAt(second, i));
+                int add = c + GetAt(first, i) + GetAt(second, i);
                 result[i] = (byte)(add % 2);
                 c = (byte)(add / 2);
             }
@@ -282,8 +324,20 @@ namespace BaseTwoOperations
          
         }
 
+      /*  byte[] Division(byte[] first, byte[] second)
+        {
+            byte[] result = { 0 };
+           while(LessThan(second, first))
+            {
+                Substraction(first, second);
+                Addition( result, new byte[] { 1 });
+            }
+            return result;*/
+
+        }
+
     }
-}
+
 
 
 
