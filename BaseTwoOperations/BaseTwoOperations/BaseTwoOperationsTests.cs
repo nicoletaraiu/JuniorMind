@@ -21,11 +21,14 @@ namespace BaseTwoOperations
     public class BaseTwoOperationsTests
     {
         [TestMethod]
-        public void TestConvertToBinary()
+        public void TestConvertToBase()
         {
-            CollectionAssert.AreEqual(new byte[] { 1, 0 }, ConvertToBinary(2));
-            CollectionAssert.AreEqual(new byte[] { 1, 0, 1 }, ConvertToBinary(5));
-            CollectionAssert.AreEqual(new byte[] { 0 }, ConvertToBinary(0));
+            CollectionAssert.AreEqual(new byte[] { 1, 0 }, ConvertToBase(2));
+            CollectionAssert.AreEqual(new byte[] { 1, 0, 1 }, ConvertToBase(5));
+            CollectionAssert.AreEqual(new byte[] { 0 }, ConvertToBase(0));
+            CollectionAssert.AreEqual(new byte[] { 1, 4 }, ConvertToBase(12, 8));
+            CollectionAssert.AreEqual(new byte[] { 1, 2, 1, 0, 2 }, ConvertToBase(146, 3));
+           // CollectionAssert.AreEqual(new byte[] { 0 }, ConvertToBase(0));
         }
 
         [TestMethod]
@@ -46,9 +49,9 @@ namespace BaseTwoOperations
         [TestMethod]
         public void TestANDlogic()
         {
-            CollectionAssert.AreEqual(ConvertToBinary(1 & 11), ANDlogic(ConvertToBinary(1), ConvertToBinary(11)));
-            CollectionAssert.AreEqual(ConvertToBinary(0 & 5), ANDlogic(ConvertToBinary(0), ConvertToBinary(5)));
-            CollectionAssert.AreEqual(ConvertToBinary(25 & 3), ANDlogic(ConvertToBinary(25), ConvertToBinary(3)));
+            CollectionAssert.AreEqual(ConvertToBase(1 & 11), ANDlogic(ConvertToBase(1), ConvertToBase(11)));
+            CollectionAssert.AreEqual(ConvertToBase(0 & 5), ANDlogic(ConvertToBase(0), ConvertToBase(5)));
+            CollectionAssert.AreEqual(ConvertToBase(25 & 3), ANDlogic(ConvertToBase(25), ConvertToBase(3)));
         }
 
         [TestMethod]
@@ -61,25 +64,25 @@ namespace BaseTwoOperations
         public void TestORlogic()
         {
 
-            CollectionAssert.AreEqual(ConvertToBinary(0 | 5), ORlogic(ConvertToBinary(0), ConvertToBinary(5)));
-            CollectionAssert.AreEqual(ConvertToBinary(25 | 3), ORlogic(ConvertToBinary(25), ConvertToBinary(3)));
+            CollectionAssert.AreEqual(ConvertToBase(0 | 5), ORlogic(ConvertToBase(0), ConvertToBase(5)));
+            CollectionAssert.AreEqual(ConvertToBase(25 | 3), ORlogic(ConvertToBase(25), ConvertToBase(3)));
         }
 
         [TestMethod]
         public void TestXORlogic()
         {
 
-            CollectionAssert.AreEqual(ConvertToBinary(0 ^ 5), XORlogic(ConvertToBinary(0), ConvertToBinary(5)));
-            CollectionAssert.AreEqual(ConvertToBinary(25 ^ 3), XORlogic(ConvertToBinary(25), ConvertToBinary(3)));
+            CollectionAssert.AreEqual(ConvertToBase(0 ^ 5), XORlogic(ConvertToBase(0), ConvertToBase(5)));
+            CollectionAssert.AreEqual(ConvertToBase(25 ^ 3), XORlogic(ConvertToBase(25), ConvertToBase(3)));
         }
         [TestMethod]
         public void LessThan()
         {
 
-            Assert.AreEqual(0 < 5, LessThan(ConvertToBinary(0), ConvertToBinary(5)));
-            Assert.AreEqual(5 < 25, LessThan(ConvertToBinary(5), ConvertToBinary(25)));
-            Assert.AreEqual(30 < 25, LessThan(ConvertToBinary(30), ConvertToBinary(25)));
-            Assert.AreEqual(8 < 2, LessThan(ConvertToBinary(8), ConvertToBinary(2)));
+            Assert.AreEqual(0 < 5, LessThan(ConvertToBase(0), ConvertToBase(5)));
+            Assert.AreEqual(5 < 25, LessThan(ConvertToBase(5), ConvertToBase(25)));
+            Assert.AreEqual(30 < 25, LessThan(ConvertToBase(30), ConvertToBase(25)));
+            Assert.AreEqual(8 < 2, LessThan(ConvertToBase(8), ConvertToBase(2)));
 
         }
 
@@ -87,8 +90,8 @@ namespace BaseTwoOperations
         public void RightHandShift()
         {
 
-            CollectionAssert.AreEqual(ConvertToBinary(8 >> 3), RightHandShift(ConvertToBinary(8), 3));
-            CollectionAssert.AreEqual(ConvertToBinary(25 >> 4), RightHandShift(ConvertToBinary(25), 4));
+            CollectionAssert.AreEqual(ConvertToBase(8 >> 3), RightHandShift(ConvertToBase(8), 3));
+            CollectionAssert.AreEqual(ConvertToBase(25 >> 4), RightHandShift(ConvertToBase(25), 4));
 
 
         }
@@ -96,8 +99,8 @@ namespace BaseTwoOperations
         public void LeftHandShift()
         {
 
-            CollectionAssert.AreEqual(ConvertToBinary(8 << 3), LeftHandShift(ConvertToBinary(8), 3));
-            CollectionAssert.AreEqual(ConvertToBinary(25 << 4), LeftHandShift(ConvertToBinary(25), 4));
+            CollectionAssert.AreEqual(ConvertToBase(8 << 3), LeftHandShift(ConvertToBase(8), 3));
+            CollectionAssert.AreEqual(ConvertToBase(25 << 4), LeftHandShift(ConvertToBase(25), 4));
 
 
         }
@@ -106,65 +109,65 @@ namespace BaseTwoOperations
         public void Addition()
         {
 
-            CollectionAssert.AreEqual(ConvertToBinary(7 + 8), Addition(ConvertToBinary(7), ConvertToBinary(8)));
-            CollectionAssert.AreEqual(ConvertToBinary(26 + 9), Addition(ConvertToBinary(26), ConvertToBinary(9)));
-            CollectionAssert.AreEqual(ConvertToBinary(25 + 5), Addition(ConvertToBinary(25), ConvertToBinary(5)));
-            CollectionAssert.AreEqual(ConvertToBinary(4 + 18), Addition(ConvertToBinary(4), ConvertToBinary(18)));
+            CollectionAssert.AreEqual(ConvertToBase(7 + 8), Addition(ConvertToBase(7), ConvertToBase(8)));
+            CollectionAssert.AreEqual(ConvertToBase(26 + 9), Addition(ConvertToBase(26), ConvertToBase(9)));
+            CollectionAssert.AreEqual(ConvertToBase(25 + 5), Addition(ConvertToBase(25), ConvertToBase(5)));
+            CollectionAssert.AreEqual(ConvertToBase(4 + 18), Addition(ConvertToBase(4), ConvertToBase(18)));
         }
 
         [TestMethod]
         public void Substraction()
         {
 
-            CollectionAssert.AreEqual(ConvertToBinary(15 - 5), Substraction(ConvertToBinary(15), ConvertToBinary(5)));
-            CollectionAssert.AreEqual(ConvertToBinary(25 - 18), Substraction(ConvertToBinary(25), ConvertToBinary(18)));
-            CollectionAssert.AreEqual(ConvertToBinary(0), Substraction(ConvertToBinary(12), ConvertToBinary(15)));
+            CollectionAssert.AreEqual(ConvertToBase(15 - 5), Substraction(ConvertToBase(15), ConvertToBase(5)));
+            CollectionAssert.AreEqual(ConvertToBase(25 - 18), Substraction(ConvertToBase(25), ConvertToBase(18)));
+            CollectionAssert.AreEqual(ConvertToBase(0), Substraction(ConvertToBase(12), ConvertToBase(15)));
         }
 
         [TestMethod]
         public void Multiplication()
         {
 
-            CollectionAssert.AreEqual(ConvertToBinary(3 * 4), Multiplication(ConvertToBinary(3), ConvertToBinary(4)));
-            CollectionAssert.AreEqual(ConvertToBinary(5 * 12), Multiplication(ConvertToBinary(5), ConvertToBinary(12)));
+            CollectionAssert.AreEqual(ConvertToBase(3 * 4), Multiplication(ConvertToBase(3), ConvertToBase(4)));
+            CollectionAssert.AreEqual(ConvertToBase(5 * 12), Multiplication(ConvertToBase(5), ConvertToBase(12)));
 
-            CollectionAssert.AreEqual(ConvertToBinary(12 * 14), Multiplication(ConvertToBinary(12), ConvertToBinary(14)));
-            CollectionAssert.AreEqual(ConvertToBinary(10 * 5), Multiplication(ConvertToBinary(10), ConvertToBinary(5)));
+            CollectionAssert.AreEqual(ConvertToBase(12 * 14), Multiplication(ConvertToBase(12), ConvertToBase(14)));
+            CollectionAssert.AreEqual(ConvertToBase(10 * 5), Multiplication(ConvertToBase(10), ConvertToBase(5)));
 
 
         }
         [TestMethod]
         public void Division()
         {
-            CollectionAssert.AreEqual(ConvertToBinary(10 / 5), Division(ConvertToBinary(10), ConvertToBinary(5)));
+            CollectionAssert.AreEqual(ConvertToBase(10 / 5), Division(ConvertToBase(10), ConvertToBase(5)));
         }
 
         [TestMethod]
         public void GraterThan()
         {
-            Assert.AreEqual(6 > 3, GraterThan(ConvertToBinary(6), ConvertToBinary(3)));
-            Assert.AreEqual(8 > 2, GraterThan(ConvertToBinary(8), ConvertToBinary(2)));
-            Assert.AreEqual(11 > 24, GraterThan(ConvertToBinary(11), ConvertToBinary(24)));
+            Assert.AreEqual(6 > 3, GraterThan(ConvertToBase(6), ConvertToBase(3)));
+            Assert.AreEqual(8 > 2, GraterThan(ConvertToBase(8), ConvertToBase(2)));
+            Assert.AreEqual(11 > 24, GraterThan(ConvertToBase(11), ConvertToBase(24)));
         }
 
         [TestMethod]
         public void Equal()
         {
-            Assert.AreEqual(6 == 6, Equal(ConvertToBinary(6), ConvertToBinary(6)));
-            Assert.AreEqual(8 == 8, Equal(ConvertToBinary(8), ConvertToBinary(8)));
-            Assert.AreEqual(11 == 24, Equal(ConvertToBinary(11), ConvertToBinary(24)));
+            Assert.AreEqual(6 == 6, Equal(ConvertToBase(6), ConvertToBase(6)));
+            Assert.AreEqual(8 == 8, Equal(ConvertToBase(8), ConvertToBase(8)));
+            Assert.AreEqual(11 == 24, Equal(ConvertToBase(11), ConvertToBase(24)));
         }
 
         [TestMethod]
         public void NotEqual()
         {
-            Assert.AreEqual(6 != 9, NotEqual(ConvertToBinary(6), ConvertToBinary(9)));
-            Assert.AreEqual(8 != 8, NotEqual(ConvertToBinary(8), ConvertToBinary(8)));
-            Assert.AreEqual(11 != 24, NotEqual(ConvertToBinary(11), ConvertToBinary(24)));
+            Assert.AreEqual(6 != 9, NotEqual(ConvertToBase(6), ConvertToBase(9)));
+            Assert.AreEqual(8 != 8, NotEqual(ConvertToBase(8), ConvertToBase(8)));
+            Assert.AreEqual(11 != 24, NotEqual(ConvertToBase(11), ConvertToBase(24)));
         }
 
 
-        byte[] ConvertToBinary(int number)
+        byte[] ConvertToBase(int number, int newBase = 2)
         {
             byte[] converted = new byte[0];
             int pos = 0;
@@ -178,8 +181,8 @@ namespace BaseTwoOperations
                 {
 
                     Array.Resize(ref converted, pos + 1);
-                    converted[pos++] = (byte)(number % 2);
-                    number /= 2;
+                    converted[pos++] = (byte)(number % newBase);
+                    number /= newBase;
 
                 }
             }
