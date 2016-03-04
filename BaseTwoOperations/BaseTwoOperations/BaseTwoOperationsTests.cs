@@ -118,7 +118,7 @@ namespace BaseTwoOperations
 
             CollectionAssert.AreEqual(ConvertToBinary(15 - 5), Substraction(ConvertToBinary(15), ConvertToBinary(5)));
             CollectionAssert.AreEqual(ConvertToBinary(25 - 18), Substraction(ConvertToBinary(25), ConvertToBinary(18)));
-            CollectionAssert.AreEqual(null, Substraction(ConvertToBinary(12), ConvertToBinary(15)));
+            CollectionAssert.AreEqual(ConvertToBinary(0), Substraction(ConvertToBinary(12), ConvertToBinary(15)));
         }
 
         [TestMethod]
@@ -331,7 +331,7 @@ namespace BaseTwoOperations
                 Array.Reverse(result);
                 return result;
             }
-            return null;
+            return new byte[] { 0 };
         }
 
         byte[] Multiplication(byte[] first, byte[] second)
