@@ -157,11 +157,11 @@ namespace BaseTwoOperations
         [TestMethod]
         public void GraterThan()
         {
-            Assert.AreEqual(6 > 3, GraterThan(ConvertToBase(6), ConvertToBase(3)));
-            Assert.AreEqual(8 > 2, GraterThan(ConvertToBase(8), ConvertToBase(2)));
-            Assert.AreEqual(11 > 24, GraterThan(ConvertToBase(11), ConvertToBase(24)));
-            Assert.AreEqual(17 > 4, GraterThan(ConvertToBase(17, 18), ConvertToBase(4, 18), 18));
-            Assert.AreEqual(5 > 88, GraterThan(ConvertToBase(5, 6), ConvertToBase(88, 6), 6));
+            Assert.AreEqual(6 > 3, Greater(ConvertToBase(6), ConvertToBase(3)));
+            Assert.AreEqual(8 > 2, Greater(ConvertToBase(8), ConvertToBase(2)));
+            Assert.AreEqual(11 > 24, Greater(ConvertToBase(11), ConvertToBase(24)));
+            Assert.AreEqual(17 > 4, Greater(ConvertToBase(17, 18), ConvertToBase(4, 18), 18));
+            Assert.AreEqual(5 > 88, Greater(ConvertToBase(5, 6), ConvertToBase(88, 6), 6));
         }
 
         [TestMethod]
@@ -170,6 +170,8 @@ namespace BaseTwoOperations
             Assert.AreEqual(6 == 6, Equal(ConvertToBase(6), ConvertToBase(6)));
             Assert.AreEqual(8 == 8, Equal(ConvertToBase(8), ConvertToBase(8)));
             Assert.AreEqual(11 == 24, Equal(ConvertToBase(11), ConvertToBase(24)));
+            Assert.AreEqual(14 == 14, Equal(ConvertToBase(14, 5), ConvertToBase(14, 5), 5));
+            Assert.AreEqual(9 == 28, Equal(ConvertToBase(9, 14), ConvertToBase(28, 14), 14));
         }
 
         [TestMethod]
@@ -178,6 +180,8 @@ namespace BaseTwoOperations
             Assert.AreEqual(6 != 9, NotEqual(ConvertToBase(6), ConvertToBase(9)));
             Assert.AreEqual(8 != 8, NotEqual(ConvertToBase(8), ConvertToBase(8)));
             Assert.AreEqual(11 != 24, NotEqual(ConvertToBase(11), ConvertToBase(24)));
+            Assert.AreEqual(17 != 4, NotEqual(ConvertToBase(17, 19), ConvertToBase(4, 19), 19));
+            Assert.AreEqual(5 != 5, NotEqual(ConvertToBase(5, 6), ConvertToBase(5, 6), 6));
         }
 
 
@@ -375,22 +379,22 @@ namespace BaseTwoOperations
 
         }
 
-        bool GraterThan(byte [] first, byte[] second, byte newBase = 2)
+        bool Greater(byte [] first, byte[] second, byte newBase = 2)
         {
             if (LessThan(second, first, newBase))
                 return true;
             return false; 
         }
-        bool Equal(byte[] first, byte[] second)
+        bool Equal(byte[] first, byte[] second, byte newBase = 2)
         {
-            if (!LessThan(second, first) && !LessThan(first, second))
+            if (!LessThan(second, first, newBase) && !LessThan(first, second, newBase))
                 return true;
             return false;
         }
 
-        bool NotEqual(byte[] first, byte[] second)
+        bool NotEqual(byte[] first, byte[] second, byte newBase = 2)
         {
-            if (LessThan(first, second) || LessThan(second, first))
+            if (LessThan(first, second, newBase) || LessThan(second, first, newBase))
                 return true;
             return false;
         }
