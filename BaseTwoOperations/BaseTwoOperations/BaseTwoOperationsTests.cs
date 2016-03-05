@@ -114,9 +114,9 @@ namespace BaseTwoOperations
             CollectionAssert.AreEqual(ConvertToBase(26 + 9), Addition(ConvertToBase(26), ConvertToBase(9)));
             CollectionAssert.AreEqual(ConvertToBase(25 + 5), Addition(ConvertToBase(25), ConvertToBase(5)));
             CollectionAssert.AreEqual(ConvertToBase(4 + 18), Addition(ConvertToBase(4), ConvertToBase(18)));
-            CollectionAssert.AreEqual(ConvertToBase((26 + 9), 8), Addition(ConvertToBase(26, 8), ConvertToBase(9, 8)));
-            //CollectionAssert.AreEqual(ConvertToBase(25 + 5), Addition(ConvertToBase(25), ConvertToBase(5)));
-            //CollectionAssert.AreEqual(ConvertToBase(4 + 18), Addition(ConvertToBase(4), ConvertToBase(18)));
+            CollectionAssert.AreEqual(ConvertToBase((26 + 9), 8), Addition(ConvertToBase(26, 8), ConvertToBase(9, 8), 8));
+            CollectionAssert.AreEqual(ConvertToBase((25 + 5), 4), Addition(ConvertToBase(25, 4), ConvertToBase(5, 4), 4));
+            CollectionAssert.AreEqual(ConvertToBase((4 + 18), 16), Addition(ConvertToBase(4, 16), ConvertToBase(18, 16),16));
         }
 
         [TestMethod]
