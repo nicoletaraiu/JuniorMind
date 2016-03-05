@@ -28,7 +28,8 @@ namespace BaseTwoOperations
             CollectionAssert.AreEqual(new byte[] { 0 }, ConvertToBase(0));
             CollectionAssert.AreEqual(new byte[] { 1, 4 }, ConvertToBase(12, 8));
             CollectionAssert.AreEqual(new byte[] { 1, 2, 1, 0, 2 }, ConvertToBase(146, 3));
-           // CollectionAssert.AreEqual(new byte[] { 0 }, ConvertToBase(0));
+            CollectionAssert.AreEqual(new byte[] { 9, 8 }, ConvertToBase(152, 16));
+
         }
 
         [TestMethod]
@@ -113,6 +114,9 @@ namespace BaseTwoOperations
             CollectionAssert.AreEqual(ConvertToBase(26 + 9), Addition(ConvertToBase(26), ConvertToBase(9)));
             CollectionAssert.AreEqual(ConvertToBase(25 + 5), Addition(ConvertToBase(25), ConvertToBase(5)));
             CollectionAssert.AreEqual(ConvertToBase(4 + 18), Addition(ConvertToBase(4), ConvertToBase(18)));
+            CollectionAssert.AreEqual(ConvertToBase((26 + 9), 8), Addition(ConvertToBase(26, 8), ConvertToBase(9, 8)));
+            //CollectionAssert.AreEqual(ConvertToBase(25 + 5), Addition(ConvertToBase(25), ConvertToBase(5)));
+            //CollectionAssert.AreEqual(ConvertToBase(4 + 18), Addition(ConvertToBase(4), ConvertToBase(18)));
         }
 
         [TestMethod]
@@ -122,6 +126,7 @@ namespace BaseTwoOperations
             CollectionAssert.AreEqual(ConvertToBase(15 - 5), Substraction(ConvertToBase(15), ConvertToBase(5)));
             CollectionAssert.AreEqual(ConvertToBase(25 - 18), Substraction(ConvertToBase(25), ConvertToBase(18)));
             CollectionAssert.AreEqual(ConvertToBase(0), Substraction(ConvertToBase(12), ConvertToBase(15)));
+           // CollectionAssert.AreEqual(ConvertToBase((25 - 18), 4), Substraction(ConvertToBase(25, 4), ConvertToBase(18, 4)));
         }
 
         [TestMethod]
@@ -302,15 +307,15 @@ namespace BaseTwoOperations
             return binaryNo;
         }
 
-        byte[] Addition(byte[] first, byte[] second)
+        byte[] Addition(byte[] first, byte[] second, byte newBase = 2)
         {
             byte[] result = new byte[Math.Max(first.Length, second.Length) + 1];
             byte c = 0;
             for (int i = 0; i < result.Length - 1; i++)
             {
                 int add = c + GetAt(first, i) + GetAt(second, i);
-                result[i] = (byte)(add % 2);
-                c = (byte)(add / 2);
+                result[i] = (byte)(add % newBase);
+                c = (byte)(add / newBase);
             }
             result[result.Length - 1] = c;
             Array.Resize(ref result, result.Length - CountZeros(result));
@@ -318,7 +323,7 @@ namespace BaseTwoOperations
             return result;
         }
 
-        byte[] Substraction(byte[] first, byte[] second)
+        byte[] Substraction(byte[] first, byte[] second, byte newBase = 2)
         {
             if (LessThan(second, first))
             {
@@ -326,9 +331,9 @@ namespace BaseTwoOperations
                 byte[] result = new byte[Math.Max(first.Length, second.Length)];
                 for (int i = 0; i < result.Length; i++)
                 {
-                    int diff = 2 + GetAt(first, i) - GetAt(second, i) - k;
-                    result[i] = (byte)(diff % 2);
-                    k = diff < 2 ? 1 : 0;
+                    int diff = newBase + GetAt(first, i) - GetAt(second, i) - k;
+                    result[i] = (byte)(diff % newBase);
+                    k = diff < newBase ? 1 : 0;
                 }
                 Array.Resize(ref result, result.Length - CountZeros(result));
                 Array.Reverse(result);
