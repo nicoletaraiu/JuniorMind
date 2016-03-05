@@ -184,6 +184,14 @@ namespace BaseTwoOperations
             Assert.AreEqual(5 != 5, NotEqual(ConvertToBase(5, 6), ConvertToBase(5, 6), 6));
         }
 
+        [TestMethod]
+        public void GetFactorial()
+        {
+            CollectionAssert.AreEqual(ConvertToBase(6), GetFactorial(ConvertToBase(3)));
+            CollectionAssert.AreEqual(ConvertToBase(49), Division(GetFactorial(ConvertToBase(49)), GetFactorial(ConvertToBase(48))));
+
+        }
+
 
         byte[] ConvertToBase(int number, int newBase = 2)
         {
@@ -397,6 +405,16 @@ namespace BaseTwoOperations
             if (LessThan(first, second, newBase) || LessThan(second, first, newBase))
                 return true;
             return false;
+        }
+
+        byte[] GetFactorial(byte[] number)
+        {
+            byte[] result = new byte[] { 1 };
+            for (byte[] i = { 1 }; LessThan(i, number); i =  Addition(i, new byte[] { 1 }))
+            {
+                result = Multiplication(result, i);
+            }
+            return Multiplication(result, number); 
         }
 
 
