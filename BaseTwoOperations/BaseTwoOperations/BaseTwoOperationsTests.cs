@@ -84,6 +84,8 @@ namespace BaseTwoOperations
             Assert.AreEqual(5 < 25, LessThan(ConvertToBase(5), ConvertToBase(25)));
             Assert.AreEqual(30 < 25, LessThan(ConvertToBase(30), ConvertToBase(25)));
             Assert.AreEqual(8 < 2, LessThan(ConvertToBase(8), ConvertToBase(2)));
+            Assert.AreEqual(12 < 5, LessThan(ConvertToBase(12, 16), ConvertToBase(5, 16), 16));
+            Assert.AreEqual(3 < 15, LessThan(ConvertToBase(3, 7), ConvertToBase(15, 7), 7));
 
         }
 
@@ -138,7 +140,7 @@ namespace BaseTwoOperations
             CollectionAssert.AreEqual(ConvertToBase(5 * 12), Multiplication(ConvertToBase(5), ConvertToBase(12)));
             CollectionAssert.AreEqual(ConvertToBase(12 * 14), Multiplication(ConvertToBase(12), ConvertToBase(14)));
             CollectionAssert.AreEqual(ConvertToBase(10 * 5), Multiplication(ConvertToBase(10), ConvertToBase(5)));
-            //CollectionAssert.AreEqual(ConvertToBase((4 * 18), 16), Multiplication(ConvertToBase(4, 16), ConvertToBase(18, 16), 16));
+            CollectionAssert.AreEqual(ConvertToBase((4 * 18), 16), Multiplication(ConvertToBase(4, 16), ConvertToBase(18, 16), 16));
             CollectionAssert.AreEqual(ConvertToBase((10 * 5), 3), Multiplication(ConvertToBase(10, 3), ConvertToBase(5, 3), 3));
 
 
@@ -158,6 +160,8 @@ namespace BaseTwoOperations
             Assert.AreEqual(6 > 3, GraterThan(ConvertToBase(6), ConvertToBase(3)));
             Assert.AreEqual(8 > 2, GraterThan(ConvertToBase(8), ConvertToBase(2)));
             Assert.AreEqual(11 > 24, GraterThan(ConvertToBase(11), ConvertToBase(24)));
+            Assert.AreEqual(17 > 4, GraterThan(ConvertToBase(17, 18), ConvertToBase(4, 18), 18));
+            Assert.AreEqual(5 > 88, GraterThan(ConvertToBase(5, 6), ConvertToBase(88, 6), 6));
         }
 
         [TestMethod]
@@ -287,7 +291,7 @@ namespace BaseTwoOperations
             return XOr(first, second);
         }
 
-         bool LessThan(byte[] first, byte[] second)
+         bool LessThan(byte[] first, byte[] second, byte newBase = 2)
          {
              for (int i = Math.Max(first.Length, second.Length) -1; i >= 0; i--)
              {
@@ -371,9 +375,9 @@ namespace BaseTwoOperations
 
         }
 
-        bool GraterThan(byte [] first, byte[] second)
+        bool GraterThan(byte [] first, byte[] second, byte newBase = 2)
         {
-            if (LessThan(second, first))
+            if (LessThan(second, first, newBase))
                 return true;
             return false; 
         }
