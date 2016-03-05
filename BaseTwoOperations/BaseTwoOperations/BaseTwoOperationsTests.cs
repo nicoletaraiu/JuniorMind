@@ -126,7 +126,8 @@ namespace BaseTwoOperations
             CollectionAssert.AreEqual(ConvertToBase(15 - 5), Substraction(ConvertToBase(15), ConvertToBase(5)));
             CollectionAssert.AreEqual(ConvertToBase(25 - 18), Substraction(ConvertToBase(25), ConvertToBase(18)));
             CollectionAssert.AreEqual(ConvertToBase(0), Substraction(ConvertToBase(12), ConvertToBase(15)));
-           // CollectionAssert.AreEqual(ConvertToBase((25 - 18), 4), Substraction(ConvertToBase(25, 4), ConvertToBase(18, 4)));
+            CollectionAssert.AreEqual(ConvertToBase((25 - 18), 12), Substraction(ConvertToBase(25, 12), ConvertToBase(18, 12),12));
+            CollectionAssert.AreEqual(ConvertToBase((52 - 13), 9), Substraction(ConvertToBase(52, 9), ConvertToBase(13, 9), 9));
         }
 
         [TestMethod]
@@ -135,9 +136,11 @@ namespace BaseTwoOperations
 
             CollectionAssert.AreEqual(ConvertToBase(3 * 4), Multiplication(ConvertToBase(3), ConvertToBase(4)));
             CollectionAssert.AreEqual(ConvertToBase(5 * 12), Multiplication(ConvertToBase(5), ConvertToBase(12)));
-
             CollectionAssert.AreEqual(ConvertToBase(12 * 14), Multiplication(ConvertToBase(12), ConvertToBase(14)));
             CollectionAssert.AreEqual(ConvertToBase(10 * 5), Multiplication(ConvertToBase(10), ConvertToBase(5)));
+            //CollectionAssert.AreEqual(ConvertToBase((4 * 18), 16), Multiplication(ConvertToBase(4, 16), ConvertToBase(18, 16), 16));
+            CollectionAssert.AreEqual(ConvertToBase((10 * 5), 3), Multiplication(ConvertToBase(10, 3), ConvertToBase(5, 3), 3));
+
 
 
         }
@@ -145,6 +148,8 @@ namespace BaseTwoOperations
         public void Division()
         {
             CollectionAssert.AreEqual(ConvertToBase(10 / 5), Division(ConvertToBase(10), ConvertToBase(5)));
+            CollectionAssert.AreEqual(ConvertToBase((12/6), 16), Division(ConvertToBase(12, 16), ConvertToBase(6, 16), 16));
+            CollectionAssert.AreEqual(ConvertToBase((54 / 6), 3), Division(ConvertToBase(54, 3), ConvertToBase(6, 3), 3));
         }
 
         [TestMethod]
@@ -342,25 +347,25 @@ namespace BaseTwoOperations
             return new byte[] { 0 };
         }
 
-        byte[] Multiplication(byte[] first, byte[] second)
+        byte[] Multiplication(byte[] first, byte[] second, byte newBase = 2)
         {
             byte[] result = { 0 };
-            for (byte[] i = { 0 }; LessThan(i, second); i = Addition(i, new byte[] { 1 }))
+            for (byte[] i = { 0 }; LessThan(i, second); i = Addition(i, new byte[] { 1 }, newBase))
             {
-                result = Addition(result, first);
+                result = Addition(result, first, newBase);
             }
 
             return result;
 
         }
 
-        byte[] Division(byte[] first, byte[] second)
+        byte[] Division(byte[] first, byte[] second, byte newBase = 2)
         {
             byte[] result = { 0 };
             while (LessThan(new byte[] { 0 }, first))
             {
-                first = Substraction(first, second);
-                result = Addition(result, new byte[] { 1 });
+                first = Substraction(first, second, newBase);
+                result = Addition(result, new byte[] { 1 }, newBase);
             }
             return result;
 
