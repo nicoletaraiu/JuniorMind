@@ -28,6 +28,13 @@ namespace ShoppingCart
             Assert.AreEqual("Salt" , GetCheapestProduct(products));
         }
 
+        [TestMethod]
+        public void MeanPriceTest()
+        {
+            var products = new Product[] { new Product("Soda", (decimal)6.5), new Product("Salt", (decimal)2.25), new Product("Chips", (decimal)3.45), new Product("Apples", (decimal)4.99) };
+            Assert.AreEqual((decimal)4.2975, GetMeanPrice(products));
+        }
+
         public struct Product
            {
             public string product;
@@ -69,8 +76,16 @@ namespace ShoppingCart
             return products[0].product; 
 
         }
-            
-           }
 
-    }
+        static decimal GetMeanPrice(Product[] products)
+        {
+            return CalculateTotalPrice(products) / products.Length;
+        }
+
+
+        
+            
+     }
+
+ }
 
