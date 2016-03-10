@@ -44,6 +44,16 @@ namespace ShoppingCart
             Assert.AreEqual(false, test);
         }
 
+        [TestMethod]
+        public void AddNewProductTest()
+        {
+            var products = new Product[] { new Product("Soda", (decimal)6.5), new Product("Salt", (decimal)2.25), new Product("Chips", (decimal)3.45), new Product("Apples", (decimal)4.99) };
+            AddNewProduct(ref products);
+            bool test = products[products.Length - 1].product == "Milk" ? true : false;
+            Assert.AreEqual(true, test);
+        }
+
+
         public struct Product
            {
             public string product;
@@ -109,6 +119,13 @@ namespace ShoppingCart
                     products[products.Length - 1] = aux;   
             }
             Array.Resize(ref products, products.Length - 1);
+        }
+
+        static void AddNewProduct( ref Product[] products)
+        {
+            Array.Resize(ref products, products.Length + 1);
+            products[products.Length - 1] = new Product("Milk", (decimal)3.99);
+
         }
 
 
