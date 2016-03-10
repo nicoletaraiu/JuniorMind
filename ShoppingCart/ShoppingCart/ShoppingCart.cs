@@ -35,6 +35,15 @@ namespace ShoppingCart
             Assert.AreEqual((decimal)4.2975, GetMeanPrice(products));
         }
 
+        [TestMethod]
+        public void DeleteMostExpensiveProductTest()
+        {
+            var products = new Product[] { new Product("Soda", (decimal)6.5), new Product("Salt", (decimal)2.25), new Product("Chips", (decimal)3.45), new Product("Apples", (decimal)4.99) };
+            DeleteMostExpensive(products);
+            bool test = products[0].product == "Soda" ? true : false;
+            Assert.AreEqual(false, test);
+        }
+
         public struct Product
            {
             public string product;
@@ -81,6 +90,27 @@ namespace ShoppingCart
         {
             return CalculateTotalPrice(products) / products.Length;
         }
+
+
+        static void DeleteMostExpensive(Product[] products)
+        {
+            Product mostExpensive = products[0];
+            for (int i = 1; i < products.Length; i++)
+            {
+                if (products[i].price > mostExpensive.price)
+                    mostExpensive = products[i];
+            }
+
+            Product aux = mostExpensive;
+            for (int i = 0; i < products.Length; i++)
+            {
+                if (products[i].Equals(mostExpensive))
+                    products[i] = products[products.Length - 1];
+                    products[products.Length - 1] = aux;   
+            }
+            Array.Resize(ref products, products.Length - 1);
+        }
+
 
 
         
