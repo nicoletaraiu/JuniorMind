@@ -25,7 +25,7 @@ namespace ShoppingCart
         public void GetCheapestProductTest()
         {
             var products = new Product[] { new Product("Soda", (decimal)6.5), new Product("Salt", (decimal)2.25), new Product("Chips", (decimal)3.45), new Product("Apples", (decimal)4.99) };
-            Assert.AreEqual("Salt" , GetCheapestProduct(products));
+            Assert.AreEqual(products[1] , GetCheapestProduct(products));
         }
 
         [TestMethod]
@@ -58,7 +58,7 @@ namespace ShoppingCart
         }
 
 
-        static string GetCheapestProduct(Product[] products)
+        static Product GetCheapestProduct(Product[] products)
         {
             decimal smallestPrice = products[0].price;
             for (int i = 1; i < products.Length; i++)
@@ -70,10 +70,10 @@ namespace ShoppingCart
             {
                 if (products[i].price == smallestPrice)
 
-                    return products[i].product;
+                    return products[i];
             }
 
-            return products[0].product; 
+            return products[0]; 
 
         }
 
