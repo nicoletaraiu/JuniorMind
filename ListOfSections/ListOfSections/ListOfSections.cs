@@ -2,6 +2,7 @@
 Ți se dă o listă de tronsoane verticale și orizontale consecutive de dimensiuni fixe.
 Scrie o funcție care verifică dacă tronsoanele se intersectează.Dacă se intersectează întoarce primul punct de intersecție.
 Notă: având în vedere că tronsoanele sunt de dimensiuni fixe, alege cel mai simplu mod de a le reprezenta, de ex: ca și o succesiune de direcții stânga, dreapta, sus, jos.*/
+
 using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -22,6 +23,13 @@ namespace ListOfSections
             Assert.AreEqual(PointDown, GetNextPoint(initialPoint, 2, 4));
             Assert.AreEqual(PointRight, GetNextPoint(initialPoint, 3, 4));
             Assert.AreEqual(PointLeft, GetNextPoint(initialPoint, 4, 4));
+        }
+
+        [TestMethod]
+        public void CheckForIntersectionTest()
+        {
+            var intersectionPoint = new Point(2, 2);
+            Assert.AreEqual(intersectionPoint, CheckForIntersection(new int[] {1, 3, 1, 2 }, 2));
         }
 
         enum Directions
@@ -71,11 +79,29 @@ namespace ListOfSections
                   return newPoint;
                 }
                 return newPoint;
-
-
+            
             }
+        static Point CheckForIntersection (int[] directions, int length)
+        {
+            Point initialPoint = new Point(0, 0);
+            Point[] pointsTillNow = new Point[directions.Length];
+            
+            pointsTillNow[0] = initialPoint;
+            for (int i = 0; i < directions.Length; i++)
+            {
+                Point nextPoint = GetNextPoint(initialPoint, directions[i], length);
+                pointsTillNow[i] = nextPoint; 
 
-
+                for(int j = 0; j < i; j++)
+                {
+                    if (pointsTillNow[j].Equals(pointsTillNow[i]))
+                        return pointsTillNow[i];
+                }
+                initialPoint = nextPoint;
+             }
+            return new Point(-1, -1);
+        }
+        
 
         }
     }
