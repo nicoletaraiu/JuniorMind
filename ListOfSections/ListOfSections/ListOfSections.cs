@@ -48,31 +48,27 @@ namespace ListOfSections
             static Point GetNextPoint(Point initialPoint, int direction, int length)
             {
 
-                Point newPoint = new Point(0,0);
+            Point newPoint = initialPoint;
                 if (direction == (int)Directions.up)
                 {
-                    newPoint.x = initialPoint.x;
-                    newPoint.y = initialPoint.y + length;
+                    newPoint.y += length;
                     return newPoint;
                 }
                 
                     if (direction == (int)Directions.down)
                 {
-                    newPoint.x = initialPoint.x;
-                    newPoint.y = initialPoint.y - length;
+                    newPoint.y -= length;
                     return newPoint;
                 }
                 if (direction == (int)Directions.left)
                 {
-                    newPoint.x = initialPoint.x - length;
-                    newPoint.y = initialPoint.y;
+                    newPoint.x -= length;
                     return newPoint;
                 }
                 if (direction == (int)Directions.right)
                 {
-                    newPoint.x = initialPoint.x + length;
-                    newPoint.y = initialPoint.y;
-                    return newPoint;
+                    newPoint.x += length;
+                  return newPoint;
                 }
                 return newPoint;
 
