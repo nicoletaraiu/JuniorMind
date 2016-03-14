@@ -29,7 +29,14 @@ namespace ListOfSections
         public void CheckForIntersectionTest()
         {
             var intersectionPoint = new Point(2, 2);
+            var NoIntersectionPoint = new Point(-1, -1);
+            var anotherIntersectionPoint = new Point(5, 0);
+            var originPoint = new Point(0, 0);
             Assert.AreEqual(intersectionPoint, CheckForIntersection(new int[] {1, 3, 1, 2 }, 2));
+            Assert.AreEqual(NoIntersectionPoint, CheckForIntersection(new int[] { 1, 3, 1, 3 }, 2));
+            Assert.AreEqual(anotherIntersectionPoint, CheckForIntersection(new int[] { 3, 1, 3, 2, 4 }, 5));
+            Assert.AreEqual(originPoint, CheckForIntersection(new int[] { 1, 2 }, 2));
+
         }
 
         enum Directions
@@ -84,18 +91,19 @@ namespace ListOfSections
         static Point CheckForIntersection (int[] directions, int length)
         {
             Point initialPoint = new Point(0, 0);
-            Point[] pointsTillNow = new Point[directions.Length];
+            Point[] pointsTillNow = new Point[directions.Length + 1];
             
             pointsTillNow[0] = initialPoint;
             for (int i = 0; i < directions.Length; i++)
-            {
-                Point nextPoint = GetNextPoint(initialPoint, directions[i], length);
-                pointsTillNow[i] = nextPoint; 
+            {   
 
-                for(int j = 0; j < i; j++)
+                Point nextPoint = GetNextPoint(initialPoint, directions[i], length);
+                pointsTillNow[i+1] = nextPoint; 
+
+                for(int j = 0; j < i + 1; j++) 
                 {
-                    if (pointsTillNow[j].Equals(pointsTillNow[i]))
-                        return pointsTillNow[i];
+                    if (pointsTillNow[j].Equals(pointsTillNow[i + 1]))
+                        return pointsTillNow[i + 1];
                 }
                 initialPoint = nextPoint;
              }
