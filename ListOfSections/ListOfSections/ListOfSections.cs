@@ -19,10 +19,10 @@ namespace ListOfSections
             var PointDown = new Point(7, 0);
             var PointLeft = new Point(3, 4);
             var PointRight = new Point(11, 4);
-            Assert.AreEqual(PointUp, GetNextPoint(initialPoint, 1, 4));
-            Assert.AreEqual(PointDown, GetNextPoint(initialPoint, 2, 4));
-            Assert.AreEqual(PointRight, GetNextPoint(initialPoint, 3, 4));
-            Assert.AreEqual(PointLeft, GetNextPoint(initialPoint, 4, 4));
+            Assert.AreEqual(PointUp, GetNextPoint(initialPoint, Directions.up, 4));
+            Assert.AreEqual(PointDown, GetNextPoint(initialPoint, Directions.down, 4));
+            Assert.AreEqual(PointRight, GetNextPoint(initialPoint, Directions.right, 4));
+            Assert.AreEqual(PointLeft, GetNextPoint(initialPoint, Directions.left, 4));
         }
 
         [TestMethod]
@@ -32,10 +32,10 @@ namespace ListOfSections
             var NoIntersectionPoint = new Point(-1, -1);
             var anotherIntersectionPoint = new Point(5, 0);
             var originPoint = new Point(0, 0);
-            Assert.AreEqual(intersectionPoint, CheckForIntersection(new int[] {1, 3, 1, 2 }, 2));
-            Assert.AreEqual(NoIntersectionPoint, CheckForIntersection(new int[] { 1, 3, 1, 3 }, 2));
-            Assert.AreEqual(anotherIntersectionPoint, CheckForIntersection(new int[] { 3, 1, 3, 2, 4 }, 5));
-            Assert.AreEqual(originPoint, CheckForIntersection(new int[] { 1, 2 }, 2));
+            Assert.AreEqual(true, CheckForIntersection(new Directions[] {Directions.up, Directions.right, Directions.up, Directions.down }, 2, out intersectionPoint));
+            Assert.AreEqual(false, CheckForIntersection(new Directions[] { Directions.up, Directions.right, Directions.up, Directions.right }, 2, out NoIntersectionPoint));
+            Assert.AreEqual(true, CheckForIntersection(new Directions[] { Directions.right, Directions.up, Directions.right, Directions.down, Directions.left }, 5, out anotherIntersectionPoint));
+            Assert.AreEqual(true, CheckForIntersection(new Directions[] { Directions.up, Directions.down }, 2, out originPoint));
 
         }
 
@@ -60,27 +60,27 @@ namespace ListOfSections
             }
         }
 
-            static Point GetNextPoint(Point initialPoint, int direction, int length)
+            static Point GetNextPoint(Point initialPoint, Directions  direction, int length)
             {
 
             Point newPoint = initialPoint;
-                if (direction == (int)Directions.up)
+                if (direction.Equals(Directions.up))
                 {
                     newPoint.y += length;
                     return newPoint;
                 }
                 
-                    if (direction == (int)Directions.down)
+                    if (direction.Equals(Directions.down))
                 {
                     newPoint.y -= length;
                     return newPoint;
                 }
-                if (direction == (int)Directions.left)
+                if (direction.Equals(Directions.left))
                 {
                     newPoint.x -= length;
                     return newPoint;
                 }
-                if (direction == (int)Directions.right)
+                if (direction.Equals(Directions.right))
                 {
                     newPoint.x += length;
                   return newPoint;
@@ -88,10 +88,12 @@ namespace ListOfSections
                 return newPoint;
             
             }
-        static Point CheckForIntersection (int[] directions, int length)
-        {
+        static bool CheckForIntersection (Directions[] directions, int length, out Point intersectionPoint)
+        {   
+
             Point initialPoint = new Point(0, 0);
             Point[] pointsTillNow = new Point[directions.Length + 1];
+            intersectionPoint = new Point(-1, -1);
             
             pointsTillNow[0] = initialPoint;
             for (int i = 0; i < directions.Length; i++)
@@ -103,11 +105,16 @@ namespace ListOfSections
                 for(int j = 0; j < i + 1; j++) 
                 {
                     if (pointsTillNow[j].Equals(pointsTillNow[i + 1]))
-                        return pointsTillNow[i + 1];
+                    {
+                        intersectionPoint = pointsTillNow[i + 1];
+                        return true;
+                    }
+                        
                 }
                 initialPoint = nextPoint;
              }
-            return new Point(-1, -1);
+            return false;
+     
         }
         
 
