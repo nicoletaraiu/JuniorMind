@@ -14,6 +14,42 @@ namespace Alarm
         [TestMethod]
         public void TestMethod1()
         {
+            
         }
+
+        enum DaysOfTheWeek
+        {
+            Monday = 1,
+            Tuesday = 2,
+            Wednesday = 4,
+            Thursday = 8,
+            Friday = 16,
+            Saturday = 32,
+            Sunday = 64
+        }
+
+
+        struct firstAlarm
+        {
+            DaysOfTheWeek days;
+            int hour; 
+             
+        }
+       /* static DaysOfTheWeek firstAlarm(DaysOfTheWeek days, out int hour)
+        {
+            hour = 8;
+            return days | DaysOfTheWeek.Monday | DaysOfTheWeek.Tuesday| DaysOfTheWeek.Wednesday 
+                | DaysOfTheWeek.Thursday | DaysOfTheWeek.Friday;
+            
+        }
+
+        static DaysOfTheWeek secondAlarm(DaysOfTheWeek days, out int hour)
+        {
+            hour = 10;
+            return days | DaysOfTheWeek.Saturday | DaysOfTheWeek.Sunday;*/
+        }
+
+        static checkWhatAlarmRings
+
     }
 }
