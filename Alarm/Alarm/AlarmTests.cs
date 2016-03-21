@@ -12,11 +12,18 @@ namespace Alarm
     public class AlarmTests
     {
         [TestMethod]
-        public void TestMethod1()
+        public void TestWhichAlarmWillRing()
         {
-            
+            Alarm[] alarms = {
+                new Alarm { day = DaysOfTheWeek.Monday | DaysOfTheWeek.Tuesday | DaysOfTheWeek.Wednesday | DaysOfTheWeek.Thursday | DaysOfTheWeek.Friday, hour = 7 },
+                new Alarm { day = DaysOfTheWeek.Saturday | DaysOfTheWeek.Sunday, hour = 9 }
+            };
+
+            //Assert.AreEqual(true, GiveTheAlarms(alarms, DaysOfTheWeek.Wednesday, 7, out alarms[0]));
+            Assert.AreEqual(true, GiveTheAlarms(alarms, DaysOfTheWeek.Sunday, 9, out alarms[1]));
         }
 
+        [Flags]
         enum DaysOfTheWeek
         {
             Monday = 1,
@@ -29,27 +36,34 @@ namespace Alarm
         }
 
 
-        struct firstAlarm
+        struct Alarm
         {
-            DaysOfTheWeek days;
-            int hour; 
-             
+           public DaysOfTheWeek day;
+           public  int hour;
+            public Alarm(DaysOfTheWeek day, int hour)
+            {
+                this.day = day;
+                this.hour = hour;
+            }
+
+
         }
-       /* static DaysOfTheWeek firstAlarm(DaysOfTheWeek days, out int hour)
+
+
+        static bool GiveTheAlarms(Alarm[] alarmsSet, DaysOfTheWeek currentDay, int currentHour, out Alarm alarmThatWillRing)
         {
-            hour = 8;
-            return days | DaysOfTheWeek.Monday | DaysOfTheWeek.Tuesday| DaysOfTheWeek.Wednesday 
-                | DaysOfTheWeek.Thursday | DaysOfTheWeek.Friday;
+            alarmThatWillRing = new Alarm(DaysOfTheWeek.Monday, -1);
+            for (int i = 0; i < alarmsSet.Length; i++)
+            {
+                if (((currentDay& alarmsSet[i].day) != 0) && (alarmsSet[i].hour == currentHour))
+                {
+                    alarmThatWillRing = alarmsSet[i];
+                    return true;
+                }
+            }
+                    return false;
             
         }
-
-        static DaysOfTheWeek secondAlarm(DaysOfTheWeek days, out int hour)
-        {
-            hour = 10;
-            return days | DaysOfTheWeek.Saturday | DaysOfTheWeek.Sunday;*/
-        }
-
-        static checkWhatAlarmRings
-
+  
     }
 }
