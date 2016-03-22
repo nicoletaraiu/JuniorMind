@@ -19,8 +19,12 @@ namespace Alarm
                 new Alarm { day = DaysOfTheWeek.Saturday | DaysOfTheWeek.Sunday, hour = 9 }
             };
 
-            Alarm willRing = alarms[1];
-            Assert.AreEqual(true, GiveTheAlarms(alarms, DaysOfTheWeek.Sunday, 9, out willRing));
+            Alarm willRingOnWeekend = alarms[1];
+            Alarm willRingOnWeekDays = alarms[0];
+            Alarm willNotRing = new Alarm { day = DaysOfTheWeek.Monday, hour = -1 };
+            Assert.AreEqual(true, GiveTheAlarms(alarms, DaysOfTheWeek.Sunday, 9, out willRingOnWeekend));
+            Assert.AreEqual(true, GiveTheAlarms(alarms, DaysOfTheWeek.Wednesday, 7, out willRingOnWeekDays));
+            Assert.AreEqual(false, GiveTheAlarms(alarms, DaysOfTheWeek.Tuesday, 11, out willNotRing));
         }
 
         [Flags]
