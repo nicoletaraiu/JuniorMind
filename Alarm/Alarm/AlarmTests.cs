@@ -13,14 +13,14 @@ namespace Alarm
     {
         [TestMethod]
         public void TestWhichAlarmWillRing()
-        {
+        {  
             Alarm[] alarms = {
                 new Alarm { day = DaysOfTheWeek.Monday | DaysOfTheWeek.Tuesday | DaysOfTheWeek.Wednesday | DaysOfTheWeek.Thursday | DaysOfTheWeek.Friday, hour = 7 },
                 new Alarm { day = DaysOfTheWeek.Saturday | DaysOfTheWeek.Sunday, hour = 9 }
             };
 
-            //Assert.AreEqual(true, GiveTheAlarms(alarms, DaysOfTheWeek.Wednesday, 7, out alarms[0]));
-            Assert.AreEqual(true, GiveTheAlarms(alarms, DaysOfTheWeek.Sunday, 9, out alarms[1]));
+            Alarm willRing = alarms[1];
+            Assert.AreEqual(true, GiveTheAlarms(alarms, DaysOfTheWeek.Sunday, 9, out willRing));
         }
 
         [Flags]
@@ -55,7 +55,7 @@ namespace Alarm
             alarmThatWillRing = new Alarm(DaysOfTheWeek.Monday, -1);
             for (int i = 0; i < alarmsSet.Length; i++)
             {
-                if (((currentDay& alarmsSet[i].day) != 0) && (alarmsSet[i].hour == currentHour))
+                if (((currentDay & alarmsSet[i].day) != 0) && (alarmsSet[i].hour == currentHour))
                 {
                     alarmThatWillRing = alarmsSet[i];
                     return true;
