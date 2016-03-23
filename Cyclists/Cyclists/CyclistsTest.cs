@@ -27,7 +27,7 @@ namespace Cyclists
             var cyclist = new Cyclist("Sandra", new int[] { 1, 2, 2, 3 }, 60);
             Assert.AreEqual((double)1507.96, CalculateTotalDistanceForACyclist(cyclist),1e-2);
 
-        }
+        }     
 
         [TestMethod]
         public void CalculateTotalDistanceTest()
@@ -55,6 +55,17 @@ namespace Cyclists
             };
             int second = 4;
             Assert.AreEqual("Marian", GiveSecondAndName(cyclists, out second));
+        }
+
+        [TestMethod]
+        public void GiveCyclistWithBestAverageSpeedTest()
+        {
+            var cyclists = new Cyclist[] { new Cyclist ("Sandra", new int[] { 1, 2, 2, 3 }, 60),
+                          new Cyclist("Ion", new int[] { 1, 2, 3, 4 }, 65),
+                          new Cyclist("Marian", new int[] { 1, 2, 2, 4 }, 66)
+            };
+
+            Assert.AreEqual("Ion", GiveCyclistWithBestAverageSpeed(cyclists));
         }
 
         struct Cyclist
@@ -121,6 +132,23 @@ namespace Cyclists
                 } 
             }
             return name; 
+        }
+
+        static string GiveCyclistWithBestAverageSpeed(Cyclist[] cyclists)
+        {
+            string bestCyclist = null;
+            double bestAvDistance = 0;
+            for (int i = 0; i < cyclists.Length; i++)
+            {
+                int time = cyclists[i].rotationsPerSecond.Length;
+                double currentAvDistance = CalculateTotalDistanceForACyclist(cyclists[i]) / time;
+                if (currentAvDistance > bestAvDistance)
+                {
+                    bestAvDistance = currentAvDistance;
+                    bestCyclist = cyclists[i].name;
+                }
+            }
+            return bestCyclist;
         }
         
     }
