@@ -21,13 +21,21 @@ namespace Cyclists
             Assert.AreEqual((decimal)376.8, CalculateDistancePerSecond(60, 2));
         }
 
+        [TestMethod]
+        public void CalculateTotalDistanceForACyclistTest()
+        {
+            var cyclist = new Cyclist("Sandra", new int[] { 1, 2, 2, 3 }, 60);
+            Assert.AreEqual((decimal)1507.2, CalculateTotalDistanceForACyclist(cyclist));
+
+        }
+
         struct Cyclist
         {
             public string name;
-            public int rotationsPerSecond;
+            public int[] rotationsPerSecond;
             public int wheelDiameter; 
 
-            public Cyclist(string name, int rotationsPerSecond, int wheelDiameter)
+            public Cyclist(string name, int[] rotationsPerSecond, int wheelDiameter)
             {
                 this.name = name;
                 this.rotationsPerSecond = rotationsPerSecond;
@@ -40,5 +48,15 @@ namespace Cyclists
             return (decimal)3.14 * wheelDiameter * rotationsPerSecond;
 
         }
+
+        static decimal CalculateTotalDistanceForACyclist(Cyclist cyclist)
+        {
+            decimal distance = 0;
+            for (int i = 0; i < cyclist.rotationsPerSecond.Length; i++)
+                distance += CalculateDistancePerSecond(cyclist.wheelDiameter, cyclist.rotationsPerSecond[i]);
+            return distance; 
+        }
+
+        
     }
 }
