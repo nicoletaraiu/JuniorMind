@@ -18,14 +18,14 @@ namespace Cyclists
         [TestMethod]
         public void DistancePerSecondTest()
         {
-            Assert.AreEqual((decimal)376.8, CalculateDistancePerSecond(60, 2));
+            Assert.AreEqual(376.99, CalculateDistancePerSecond(60, 2), 1e-2);
         }
 
         [TestMethod]
         public void CalculateTotalDistanceForACyclistTest()
         {
             var cyclist = new Cyclist("Sandra", new int[] { 1, 2, 2, 3 }, 60);
-            Assert.AreEqual((decimal)1507.2, CalculateTotalDistanceForACyclist(cyclist));
+            Assert.AreEqual((double)1507.96, CalculateTotalDistanceForACyclist(cyclist),1e-2);
 
         }
 
@@ -36,7 +36,7 @@ namespace Cyclists
                           new Cyclist("Ion", new int[] { 1, 2, 3, 4 }, 65),
                           new Cyclist("Marian", new int[] { 1, 2, 2, 4 }, 66)
             };
-            Assert.AreEqual((decimal)5413.36, CalculateTotalDistance(cyclists));
+            Assert.AreEqual(5416.10, CalculateTotalDistance(cyclists), 1e-2);
         }
 
         struct Cyclist
@@ -53,26 +53,32 @@ namespace Cyclists
             }
         }
 
-        static decimal CalculateDistancePerSecond(int wheelDiameter, int rotationsPerSecond)
+        static double CalculateDistancePerSecond(int wheelDiameter, int rotationsPerSecond)
         {
-            return (decimal)3.14 * wheelDiameter * rotationsPerSecond;
+            return Math.PI * wheelDiameter * rotationsPerSecond;
 
         }
 
-        static decimal CalculateTotalDistanceForACyclist(Cyclist cyclist)
+        static double CalculateTotalDistanceForACyclist(Cyclist cyclist)
         {
-            decimal distance = 0;
+            double distance = 0;
             for (int i = 0; i < cyclist.rotationsPerSecond.Length; i++)
                 distance += CalculateDistancePerSecond(cyclist.wheelDiameter, cyclist.rotationsPerSecond[i]);
             return distance; 
         }
-        static decimal CalculateTotalDistance(Cyclist[] cyclists)
+        static double CalculateTotalDistance(Cyclist[] cyclists)
         {
-            decimal totalDistance = 0;
+            double totalDistance = 0;
             for (int i = 0; i < cyclists.Length; i++)
                totalDistance += CalculateTotalDistanceForACyclist(cyclists[i]);
             return totalDistance;
              
+        }
+
+        static double GiveSecondOfMaxSpeed(Cyclist cyclist)
+        {
+            int second = 0;
+            return 0;
         }
 
         
