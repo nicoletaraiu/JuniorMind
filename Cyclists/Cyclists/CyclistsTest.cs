@@ -39,6 +39,13 @@ namespace Cyclists
             Assert.AreEqual(5416.10, CalculateTotalDistance(cyclists), 1e-2);
         }
 
+        [TestMethod]
+        public void GiveSecondOfMaxSpeed()
+        {
+            var cyclist = new Cyclist("Sandra", new int[] { 1, 2, 2, 3 }, 60);
+            Assert.AreEqual(4, GiveSecondOfMaxSpeed(cyclist));
+        }
+
         struct Cyclist
         {
             public string name;
@@ -78,7 +85,10 @@ namespace Cyclists
         static double GiveSecondOfMaxSpeed(Cyclist cyclist)
         {
             int second = 0;
-            return 0;
+            for (int i = 0; i < cyclist.rotationsPerSecond.Length; i++)
+                if (cyclist.rotationsPerSecond[i] > second)
+                    second = i + 1;
+            return second;
         }
 
         
