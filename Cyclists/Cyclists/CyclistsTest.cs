@@ -46,6 +46,17 @@ namespace Cyclists
             Assert.AreEqual(4, GiveSecondOfMaxSpeed(cyclist));
         }
 
+        [TestMethod]
+        public void GiveNameAndSecondTest()
+        {
+            var cyclists = new Cyclist[] { new Cyclist ("Sandra", new int[] { 1, 2, 2, 3 }, 60),
+                          new Cyclist("Ion", new int[] { 1, 2, 3, 4 }, 65),
+                          new Cyclist("Marian", new int[] { 1, 2, 2, 4 }, 66)
+            };
+            int second = 4;
+            Assert.AreEqual("Marian", GiveSecondAndName(cyclists, out second));
+        }
+
         struct Cyclist
         {
             public string name;
@@ -82,7 +93,7 @@ namespace Cyclists
              
         }
 
-        static double GiveSecondOfMaxSpeed(Cyclist cyclist)
+        static int GiveSecondOfMaxSpeed(Cyclist cyclist)
         {
             int second = 0;
             for (int i = 0; i < cyclist.rotationsPerSecond.Length; i++)
@@ -91,6 +102,26 @@ namespace Cyclists
             return second;
         }
 
+        static string GiveSecondAndName(Cyclist[] cyclists, out int second)
+        {
+            double maxSpeed = 0;
+            second = 0;
+            int sec;
+            double speed;
+            string name = null;
+            for (int i = 0; i< cyclists.Length; i++)
+            {
+                sec = GiveSecondOfMaxSpeed(cyclists[i]) - 1;
+                speed = CalculateDistancePerSecond(cyclists[i].wheelDiameter, cyclists[i].rotationsPerSecond[sec]);
+                if (speed > maxSpeed)
+                {
+                    maxSpeed = speed;
+                    second = sec;
+                    name = cyclists[i].name;
+                } 
+            }
+            return name; 
+        }
         
     }
 }
