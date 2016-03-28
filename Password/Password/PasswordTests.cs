@@ -18,11 +18,13 @@ namespace Password
         [TestMethod]
         public void CheckNumberTest()
         {
-            var options = new PasswordOptions(9, 3, 2);
+            var options = new PasswordOptions(13, 3, 2, 4);
+            
             string pass = GeneratePassword(options);
             Assert.AreEqual(3, CheckNumber(pass, 'A', 'Z'));
             Assert.AreEqual(2, CheckNumber(pass, '0', '9'));
             Assert.AreEqual(4, CheckNumber(pass, 'a', 'z'));
+            Assert.AreEqual(4, CheckNumberOfSymbols(pass));
 
         }
 
@@ -31,13 +33,15 @@ namespace Password
             public int passwordLength;
             public int numberOfUpperCaseLetters;
             public int numberOfDigits;
+            public int numberOfSymbols; 
              
 
-            public PasswordOptions(int passwordLength, int numberOfUpperCaseLetters, int numberOfDigits)
+            public PasswordOptions(int passwordLength, int numberOfUpperCaseLetters, int numberOfDigits, int numberOfSymbols)
             {
                 this.passwordLength = passwordLength;
                 this.numberOfUpperCaseLetters = numberOfUpperCaseLetters;
                 this.numberOfDigits = numberOfDigits;
+                this.numberOfSymbols = numberOfSymbols;
                
             }
 
@@ -55,13 +59,27 @@ namespace Password
             return password; 
         }
 
+        static string GenerateSymbols(int number)
+        {
+            string symbols = "!@#$%^&*()_\\-+={}[]:;'\"|,./<>?~";
+            string generatedSymbols = null;
+            Random rnd = new Random();
+            for (int i = 0; i < number; i++)
+             generatedSymbols += symbols[rnd.Next(0, symbols.Length)];
+            
+            return generatedSymbols;   
+            
+
+        }
+
         static string GeneratePassword(PasswordOptions options)
         {
             int numberOfLowerCase = options.passwordLength - options.numberOfUpperCaseLetters
-                  - options.numberOfDigits;
+                  - options.numberOfDigits - options.numberOfSymbols;
             string password = GenerateLettersOrDigits('A', 'Z' + 1, options.numberOfUpperCaseLetters)
                 + GenerateLettersOrDigits('0', '9' + 1, options.numberOfDigits)
-                + GenerateLettersOrDigits('a', 'z' + 1, numberOfLowerCase);
+                + GenerateLettersOrDigits('a', 'z' + 1, numberOfLowerCase)
+                + GenerateSymbols(options.numberOfSymbols);
             return password;
         }
 
@@ -72,6 +90,16 @@ namespace Password
                 if ((password[i] >= start) && password[i] <= end)
                     number++;
             return number; 
+        }
+        int CheckNumberOfSymbols(string password)
+        {
+            string symbols = "!@#$%^&*()_\\-+={}[]:;'\"|,./<>?~";
+          
+            int number = 0;
+            for (int i = 0; i < password.Length; i++)
+                if (symbols.IndexOf(password[i]) != - 1)
+                    number++;
+            return number;
         }
 
     }
