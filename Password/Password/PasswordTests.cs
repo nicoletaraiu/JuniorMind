@@ -16,11 +16,11 @@ namespace Password
     public class PasswordTests
     {
         [TestMethod]
-        public void CheckNumberOfUpperCaseLetters()
+        public void CheckNumberTest()
         {
             var options = new PasswordOptions(9, 9, 0);
             string pass = GeneratePassword(options);
-            Assert.AreEqual(9, CheckNumberOfUpperCase(pass));
+            Assert.AreEqual(9, CheckNumber(pass, 'A', 'Z'));
 
         }
 
@@ -55,17 +55,17 @@ namespace Password
 
         static string GeneratePassword(PasswordOptions options)
         {
-            string password = GenerateLettersOrDigits(65, 91, options.numberOfUpperCaseLetters);
+            string password = GenerateLettersOrDigits('A', 'Z' + 1, options.numberOfUpperCaseLetters);
                // + GenerateLettersOrDigits(48, 58, options.numberOfDigits)
                // + GenerateLettersOrDigits(97, 123, options.passwordLength);
             return password;
         }
 
-        int CheckNumberOfUpperCase(string password)
+        int CheckNumber(string password, char start, char end)
         {
             int number = 0;
             for (int i = 0; i < password.Length; i++)
-                if ((password[i] >= 'A') && password[i] <= 'Z')
+                if ((password[i] >= start) && password[i] <= end)
                     number++;
             return number; 
         }
