@@ -18,9 +18,11 @@ namespace Password
         [TestMethod]
         public void CheckNumberTest()
         {
-            var options = new PasswordOptions(9, 9, 0);
+            var options = new PasswordOptions(9, 3, 2);
             string pass = GeneratePassword(options);
-            Assert.AreEqual(9, CheckNumber(pass, 'A', 'Z'));
+            Assert.AreEqual(3, CheckNumber(pass, 'A', 'Z'));
+            Assert.AreEqual(2, CheckNumber(pass, '0', '9'));
+            Assert.AreEqual(4, CheckNumber(pass, 'a', 'z'));
 
         }
 
@@ -55,9 +57,11 @@ namespace Password
 
         static string GeneratePassword(PasswordOptions options)
         {
-            string password = GenerateLettersOrDigits('A', 'Z' + 1, options.numberOfUpperCaseLetters);
-               // + GenerateLettersOrDigits(48, 58, options.numberOfDigits)
-               // + GenerateLettersOrDigits(97, 123, options.passwordLength);
+            int numberOfLowerCase = options.passwordLength - options.numberOfUpperCaseLetters
+                  - options.numberOfDigits;
+            string password = GenerateLettersOrDigits('A', 'Z' + 1, options.numberOfUpperCaseLetters)
+                + GenerateLettersOrDigits('0', '9' + 1, options.numberOfDigits)
+                + GenerateLettersOrDigits('a', 'z' + 1, numberOfLowerCase);
             return password;
         }
 
