@@ -80,14 +80,22 @@ namespace Password
         }
 
 
-        static string GenerateSymbols(int number)
+        static string GenerateSymbols(int number, bool excludeAmbiguous)
         {
             string symbols = "!@#$%^&*()_\\-+={}[]:;'\"|,./<>?~";
+            string ambiguous = "{}[]()/\'\"~,;.<> */ ";
             string generatedSymbols = null;
             Random rnd = new Random();
-            for (int i = 0; i < number; i++)
-             generatedSymbols += symbols[rnd.Next(0, symbols.Length)];
             
+            for (int i = 0; i < number; i++)
+            {
+                char currentSymbol = symbols[rnd.Next(0, symbols.Length)];
+                while (ambiguous.IndexOf(currentSymbol) != -1)
+                {
+                   currentSymbol = symbols[rnd.Next(0, symbols.Length)];
+                }
+                generatedSymbols +=currentSymbol;
+            }
             return generatedSymbols;   
             
 
@@ -100,7 +108,7 @@ namespace Password
             string password = GenerateLettersOrDigits('A', 'Z' + 1, options.numberOfUpperCaseLetters, options.noSimilars)
                 + GenerateLettersOrDigits('0', '9' + 1, options.numberOfDigits, options.noSimilars)
                 + GenerateLettersOrDigits('a', 'z' + 1, numberOfLowerCase, options.noSimilars)
-                + GenerateSymbols(options.numberOfSymbols);
+                + GenerateSymbols(options.numberOfSymbols, options.noAmbiguous);
             return password;
         }
 
