@@ -18,7 +18,7 @@ namespace Password
         [TestMethod]
         public void CheckNumberTest()
         {
-            var options = new PasswordOptions(13, 3, 2, 4);
+            var options = new PasswordOptions(13, 3, 2, 4, false, false);
             
             string pass = GeneratePassword(options);
             Assert.AreEqual(3, CheckNumber(pass, 'A', 'Z'));
@@ -28,20 +28,30 @@ namespace Password
 
         }
 
+        [TestMethod]
+        public void GenerateExcludingSimilarsTest()
+        {
+            string pass = GenerateExcludingSimilars('a', 'b' + 1, 2, "b");
+            Assert.AreEqual("aa", pass); 
+        }
+
         struct PasswordOptions
         {
             public int passwordLength;
             public int numberOfUpperCaseLetters;
             public int numberOfDigits;
-            public int numberOfSymbols; 
-             
+            public int numberOfSymbols;
+            public bool noSimilars;
+            public bool noAmbiguous;
 
-            public PasswordOptions(int passwordLength, int numberOfUpperCaseLetters, int numberOfDigits, int numberOfSymbols)
+            public PasswordOptions(int passwordLength, int numberOfUpperCaseLetters, int numberOfDigits, int numberOfSymbols, bool noSimilars, bool noAmbiguous)
             {
                 this.passwordLength = passwordLength;
                 this.numberOfUpperCaseLetters = numberOfUpperCaseLetters;
                 this.numberOfDigits = numberOfDigits;
                 this.numberOfSymbols = numberOfSymbols;
+                this.noSimilars = noSimilars;
+                this.noAmbiguous = noAmbiguous;
                
             }
 
@@ -59,6 +69,25 @@ namespace Password
             return password; 
         }
 
+        static string GenerateExcludingSimilars(int lowerLimit, int upperLimit, int length, string exclude)
+        {
+            
+            bool ok = false;
+            string password = null;
+            while (!ok)
+            {
+                password = GenerateLettersOrDigits(lowerLimit, upperLimit, length);
+                ok = true;
+                for (int i = 0; i < password.Length; i++)
+                    if (exclude.IndexOf(password[i]) != -1)
+                    {
+                        ok = false;
+                        break;
+                    }           
+            }
+            return password;
+        }
+
         static string GenerateSymbols(int number)
         {
             string symbols = "!@#$%^&*()_\\-+={}[]:;'\"|,./<>?~";
@@ -73,7 +102,7 @@ namespace Password
         }
 
         static string GeneratePassword(PasswordOptions options)
-        {
+        {  
             int numberOfLowerCase = options.passwordLength - options.numberOfUpperCaseLetters
                   - options.numberOfDigits - options.numberOfSymbols;
             string password = GenerateLettersOrDigits('A', 'Z' + 1, options.numberOfUpperCaseLetters)
@@ -102,5 +131,6 @@ namespace Password
             return number;
         }
 
+        
     }
 }
