@@ -35,6 +35,21 @@ namespace Password
             Assert.AreEqual("mm", pass); 
         }
 
+        [TestMethod]
+        public void GenerateSymbolsWithoutAmbiguousTest()
+        {
+            string pass = GenerateSymbols(10, true);
+            string ambiguous = "{}[]()/\'\"~,;.<> */ ";
+            bool ok = true; 
+            for (int i = 0; i< pass.Length; i++)
+                if (ambiguous.IndexOf(pass[i]) != -1)
+                {
+                    ok = false;
+                    break;
+                }
+            Assert.AreEqual(true, ok);
+        }
+
         struct PasswordOptions
         {
             public int passwordLength;
@@ -90,6 +105,7 @@ namespace Password
             for (int i = 0; i < number; i++)
             {
                 char currentSymbol = symbols[rnd.Next(0, symbols.Length)];
+                if (excludeAmbiguous)
                 while (ambiguous.IndexOf(currentSymbol) != -1)
                 {
                    currentSymbol = symbols[rnd.Next(0, symbols.Length)];
