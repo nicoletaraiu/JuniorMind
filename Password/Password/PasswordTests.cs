@@ -29,10 +29,10 @@ namespace Password
         }
 
         [TestMethod]
-        public void GenerateExcludingSimilarsTest()
+        public void GenerateLettersOrDigitsWithoutSimilarsTest()
         {
-            string pass = GenerateExcludingSimilars('a', 'b' + 1, 2, "b");
-            Assert.AreEqual("aa", pass); 
+            string pass = GenerateLettersOrDigits('l', 'm' + 1, 2, true);
+            Assert.AreEqual("mm", pass); 
         }
 
         struct PasswordOptions
@@ -57,36 +57,28 @@ namespace Password
 
         }
 
-        static string GenerateLettersOrDigits(int lowerLimit, int upperLimit, int length)
+        static string GenerateLettersOrDigits(int lowerLimit, int upperLimit, int length, bool excludeSimilars)
         {
             string password = null;
             Random rnd = new Random();
+            string excluded = "l1Io0O";
+
+
             for (int i = 0; i < length; i++)
             {
                 char ch = (char)rnd.Next(lowerLimit, upperLimit);
-                password += ch.ToString(); 
-            }
+                if (excludeSimilars)
+                    while (excluded.IndexOf(ch) != -1)
+                    {
+                        ch = (char)rnd.Next(lowerLimit, upperLimit);
+                    }
+            
+                    password += ch.ToString();
+                }
+
             return password; 
         }
 
-        static string GenerateExcludingSimilars(int lowerLimit, int upperLimit, int length, string exclude)
-        {
-            
-            bool ok = false;
-            string password = null;
-            while (!ok)
-            {
-                password = GenerateLettersOrDigits(lowerLimit, upperLimit, length);
-                ok = true;
-                for (int i = 0; i < password.Length; i++)
-                    if (exclude.IndexOf(password[i]) != -1)
-                    {
-                        ok = false;
-                        break;
-                    }           
-            }
-            return password;
-        }
 
         static string GenerateSymbols(int number)
         {
@@ -105,9 +97,9 @@ namespace Password
         {  
             int numberOfLowerCase = options.passwordLength - options.numberOfUpperCaseLetters
                   - options.numberOfDigits - options.numberOfSymbols;
-            string password = GenerateLettersOrDigits('A', 'Z' + 1, options.numberOfUpperCaseLetters)
-                + GenerateLettersOrDigits('0', '9' + 1, options.numberOfDigits)
-                + GenerateLettersOrDigits('a', 'z' + 1, numberOfLowerCase)
+            string password = GenerateLettersOrDigits('A', 'Z' + 1, options.numberOfUpperCaseLetters, options.noSimilars)
+                + GenerateLettersOrDigits('0', '9' + 1, options.numberOfDigits, options.noSimilars)
+                + GenerateLettersOrDigits('a', 'z' + 1, numberOfLowerCase, options.noSimilars)
                 + GenerateSymbols(options.numberOfSymbols);
             return password;
         }
