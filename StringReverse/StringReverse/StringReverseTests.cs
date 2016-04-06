@@ -19,7 +19,7 @@ namespace StringReverse
         {
             if (toReverse.Length == 1)
                 return toReverse;
-            else return toReverse[toReverse.Length-1] + ReverseString(toReverse.Substring(0, toReverse.Length -1));
+             return toReverse[toReverse.Length-1] + ReverseString(toReverse.Substring(0, toReverse.Length -1));
         }
     }
 }
