@@ -18,18 +18,14 @@ namespace ReplaceCharacterWithString
         string ReplaceCharacter(string initial, string replace, char toBeReplaced)
         {
 
-            if (initial.Length == 1)
-            {
-                if (initial[0] == toBeReplaced)
-                    return replace;
-                else
-                    return initial[0].ToString();
-            }
+            if (initial.Length == 0)
+            
+                    return "";
+            
 
             else
                 if (initial[initial.Length - 1] == toBeReplaced)
                 return ReplaceCharacter(initial.Substring(0, initial.Length - 1), replace, toBeReplaced) + replace;
-            else
                 return ReplaceCharacter(initial.Substring(0, initial.Length - 1), replace, toBeReplaced) + initial[initial.Length - 1];
         }
     }
