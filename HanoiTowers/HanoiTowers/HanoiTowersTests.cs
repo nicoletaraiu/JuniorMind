@@ -22,7 +22,7 @@ namespace HanoiTowers
 
             CollectionAssert.AreEqual(new int[] {7, 3, 2 }, GetTower(3, source, dest, spare));
         }
-
+        [TestMethod]
         public void TestFor8Disks()
         {
             int[] source = new int[] { 19, 14, 11, 9, 8, 5, 3, 2 };
