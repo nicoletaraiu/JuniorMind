@@ -35,7 +35,7 @@ namespace PascalsTriangle
             int[] row = new int[level];
             if (level == 1)
                 return new int[] { 1 };
-            else {
+            
                 row[0] = 1;
                 row[level - 1] = 1;
                 int[] previousRow = GeneratePascalsTriangle(level - 1);
@@ -44,7 +44,7 @@ namespace PascalsTriangle
                     row[i] = previousRow[i - 1] + previousRow[i];
 
                 return row;
-            }     
+                
 
         }
     }
