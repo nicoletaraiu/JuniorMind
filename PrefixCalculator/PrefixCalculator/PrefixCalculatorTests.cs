@@ -34,18 +34,29 @@ namespace PrefixCalculator
 
         }
 
+        [TestMethod]
+        public void VariousOperations()
+        {
+            int i = 0; string expression = "+ / * + 3 4 2 1 - 1 0.25";
+            Assert.AreEqual(14.75, GiveResult(SplitString(expression), ref i));
+        }
+
         public double GiveResult(string[] expression, ref int i)
         {
            
             double operand;
-            if (double.TryParse(expression[i++], out operand))
+            var current = expression[i++];
+            if (double.TryParse(current, out operand))
             {
                 return operand;
             }
-            if (expression[i].Equals('+'))
-                return GiveResult(expression, ref i) * GiveResult(expression, ref i);
-           
+            if (current == "+")
                 return GiveResult(expression, ref i) + GiveResult(expression, ref i);
+            if (current == "*")
+                return GiveResult(expression, ref i) * GiveResult(expression, ref i);
+            if (current == "-")
+                return GiveResult(expression, ref i) - GiveResult(expression, ref i);
+            return GiveResult(expression, ref i) / GiveResult(expression, ref i);
 
 
         }
