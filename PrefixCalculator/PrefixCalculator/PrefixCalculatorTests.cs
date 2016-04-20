@@ -22,21 +22,36 @@ namespace PrefixCalculator
         {
             string expression = "+ 1 2";
             int i = 0;
-            Assert.AreEqual(3, GiveResult(expression, ref i)); 
+            Assert.AreEqual(3, GiveResult(SplitString (expression), ref i)); 
         }
 
-        public double GiveResult(string expression, ref int i)
+        [TestMethod]
+        public void SumAndMultiplicationTest()
         {
-            string[] expressionArr = expression.Split(' ');
-            
+            int i = 0;
+            string expression = "* + 1 1 2";
+            Assert.AreEqual(4, GiveResult(SplitString(expression), ref i));
+
+        }
+
+        public double GiveResult(string[] expression, ref int i)
+        {
+           
             double operand;
-            if (double.TryParse(expressionArr[i++], out operand))
+            if (double.TryParse(expression[i++], out operand))
             {
                 return operand;
             }
+            if (expression[i].Equals('+'))
+                return GiveResult(expression, ref i) * GiveResult(expression, ref i);
            
                 return GiveResult(expression, ref i) + GiveResult(expression, ref i);
-            
+
+
+        }
+        public string[] SplitString(string str)
+        {
+            return str.Split(' '); 
         }
     }
 }
