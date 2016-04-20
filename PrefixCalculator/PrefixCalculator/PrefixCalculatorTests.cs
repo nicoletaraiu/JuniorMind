@@ -50,16 +50,24 @@ namespace PrefixCalculator
             {
                 return operand;
             }
-            if (current == "+")
-                return GiveResult(expression, ref i) + GiveResult(expression, ref i);
-            if (current == "*")
-                return GiveResult(expression, ref i) * GiveResult(expression, ref i);
-            if (current == "-")
-                return GiveResult(expression, ref i) - GiveResult(expression, ref i);
-            return GiveResult(expression, ref i) / GiveResult(expression, ref i);
+            
+            return Calculate(current, GiveResult(expression, ref i), GiveResult(expression, ref i));
 
-
+    
         }
+
+        public double  Calculate(string current, double op1, double op2)
+        {
+
+            switch (current)
+            {
+                case "+": return op1 + op2;
+                case "*": return op1 * op2;
+                case "/": return op1 / op2;
+                default: return op1 - op2;
+            }
+        }
+
         public string[] SplitString(string str)
         {
             return str.Split(' '); 
