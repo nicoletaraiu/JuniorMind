@@ -25,5 +25,14 @@ namespace Elections
                 return 1;
             return -1;
         }
+
+        public int CompareByVotes(Candidate other)
+        {
+            if (noOfVotes == other.noOfVotes)
+                return 0;
+            if (noOfVotes > other.noOfVotes)
+                return 1;
+            return -1;
+        }
     }
 }
