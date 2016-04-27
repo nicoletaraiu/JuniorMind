@@ -16,7 +16,7 @@ namespace Elections
             this.candidates = candidates;
         }
 
-       private Candidate[] OrderAlphabelically(Candidate[] candidates)
+     /*  private Candidate[] OrderAlphabelically(Candidate[] candidates)
         {
             for (int i = 1; i < candidates.Length; i++)
             {
@@ -34,6 +34,6 @@ namespace Elections
                         break;
                 }
                 return candidates; 
-            }
+            }*/
     }
 }

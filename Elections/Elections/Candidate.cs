@@ -11,10 +11,19 @@ namespace Elections
         private string name;
         private int noOfVotes;
 
-        Candidate(string name, int noOfVotes)
+        public Candidate(string name, int noOfVotes)
         {
             this.name = name;
             this.noOfVotes = noOfVotes; 
+        }
+
+        public int CompareByName(Candidate other)
+        {
+            if (name.Equals(other.name))
+                return 0;
+            if (name[0] < other.name[0])
+                return 1;
+            return -1;
         }
     }
 }

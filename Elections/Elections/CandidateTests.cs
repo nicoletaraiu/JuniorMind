@@ -10,11 +10,17 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Elections
 {
     [TestClass]
-    public class ElectionsTests
+    public class CandidateTests
     {
         [TestMethod]
-        public void TestMethod1()
+        public void CompareByNameTest()
         {
+            Candidate C1 = new Candidate("Adam", 300);
+            Candidate C2 = new Candidate("Ion", 345);
+            Candidate C3 = new Candidate("Ion", 125);
+            Assert.AreEqual(1, C1.CompareByName(C2));
+            Assert.AreEqual(0, C2.CompareByName(C3));
+
         }
     }
 }

@@ -51,7 +51,8 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Candidate.cs" />
-    <Compile Include="ElectionsTests.cs" />
+    <Compile Include="CandidateTests.cs" />
+    <Compile Include="ListOfCandidates.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Choose>
