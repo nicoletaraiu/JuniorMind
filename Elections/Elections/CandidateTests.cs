@@ -23,6 +23,7 @@ namespace Elections
             Assert.AreEqual(0, C2.CompareByName(C3));
             Assert.AreEqual(0, C1.CompareByVotes(C4));
             Assert.AreEqual(-1, C3.CompareByVotes(C2));
+            Assert.AreEqual(-1, C2.CompareByName(C1));
 
         }
     }
