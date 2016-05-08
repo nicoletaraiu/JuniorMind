@@ -31,26 +31,7 @@ namespace Elections
             CollectionAssert.AreEqual(sortedAlphabetically, S1.SortAlphabetically(ref candidates));
         }
 
-      /*  [TestMethod]
-        public void SortByNumberOfVotes()
-        {
-
-            var candidates = new Candidate[] {
-                new Candidate ("Ion", 314),
-                new Candidate("Adam", 207),
-                new Candidate("Dan", 500),
-                new Candidate("Vasile", 135) };
-
-            var sortedByVotes = new Candidate[]
-          {
-                new Candidate("Dan", 500),
-                new Candidate("Ion", 314),
-                new Candidate("Adam", 207),
-                new Candidate("Vasile", 135)
-         };
-            CandidatesSortedAlphabetically S2 = new CandidatesSortedAlphabetically(candidates);
-            CollectionAssert.AreEqual(sortedByVotes, S2.SortByNoOfVotes(ref candidates));
-        }*/
+     
 
     }
     
