@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 namespace Elections
 {
     [TestClass]
-    class FinalListTests
+    public class FinalListTestClass
     {
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethod]
+        [TestMethod]
         public void MergeAllListsTest()
         {
             var adam = new Candidate("Adam", 207);
@@ -45,18 +45,13 @@ namespace Elections
 
             Assert.AreEqual(0, adam.CompareByName(finalAdam));
             Assert.AreEqual(0, dan.CompareByName(finalDan));
-            Assert.AreEqual(0, ion.CompareByName(finalIon));
+            Assert.AreEqual(0, ion.CompareByVotes(finalIon));
 
             Assert.AreEqual(0, adam.CompareByVotes(finalAdam));
             Assert.AreEqual(0, dan.CompareByVotes(finalDan));
             Assert.AreEqual(0, ion.CompareByVotes(finalIon));
-
-
-
-
-
-
+          }
 
         }
-    } 
-}
+
+    }
