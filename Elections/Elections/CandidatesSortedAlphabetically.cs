@@ -53,6 +53,13 @@ namespace Elections
             Candidate temp = candidates[x];
             candidates[x] = candidates[y];
             candidates[y] = temp;
+        }  
+
+        public void Merge(CandidatesSortedAlphabetically sortedCandidates)
+        {
+            int length = sortedCandidates.candidates.Length;
+            for (int i = 0; i < length; i++)
+                candidates[i].AddVotes(sortedCandidates.candidates[i]);
         }
 
     }

@@ -55,8 +55,8 @@
     <Compile Include="CandidatesSortedAlphabetically.cs" />
     <Compile Include="CandidatesSortedByVotesTests.cs" />
     <Compile Include="CandidatesSortedByVotes.cs" />
-    <Compile Include="ListsOfCandidates.cs" />
-    <Compile Include="ListOfCandidatesTests.cs" />
+    <Compile Include="FinalList.cs" />
+    <Compile Include="FinalListTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="CandidatesSortedAlphabeticallyTests.cs" />
   </ItemGroup>
