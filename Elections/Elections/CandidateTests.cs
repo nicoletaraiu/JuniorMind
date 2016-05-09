@@ -15,16 +15,26 @@ namespace Elections
         [TestMethod]
         public void CompareByNameTest()
         {
-            Candidate C1 = new Candidate("Adam", 300);
-            Candidate C2 = new Candidate("Ion", 345);
-            Candidate C3 = new Candidate("Ion", 125);
-            Candidate C4 = new Candidate("Andrei", 300);
-            Assert.AreEqual(1, C1.CompareByName(C2));
-            Assert.AreEqual(0, C2.CompareByName(C3));
-            Assert.AreEqual(0, C1.CompareByVotes(C4));
-            Assert.AreEqual(-1, C3.CompareByVotes(C2));
-            Assert.AreEqual(-1, C2.CompareByName(C1));
+            var adam = new Candidate("Adam", 300);
+            var ion = new Candidate("Ion", 345);
+            var ionFromOtherList = new Candidate("Ion", 125);
+            var andrei = new Candidate("Andrei", 300);
+            Assert.AreEqual(1, adam.CompareByName(ion));
+            Assert.AreEqual(0, ion.CompareByName(ionFromOtherList));
+            Assert.AreEqual(0, adam.CompareByVotes(andrei));
+            Assert.AreEqual(-1, ionFromOtherList.CompareByVotes(ion));
+            Assert.AreEqual(-1, ion.CompareByName(adam));
 
+        }
+
+        [TestMethod]
+        public void AddVotesTest()
+        {
+            var ion = new Candidate("Ion", 345);
+            var ionFromOtherList = new Candidate("Ion", 125);
+            ion.AddVotes(ionFromOtherList);
+            var ionFinal = new Candidate("Ion", 470); 
+            Assert.AreEqual(0, ion.CompareByVotes(ionFinal));
         }
     }
 }

@@ -33,6 +33,12 @@ namespace Elections
             if (noOfVotes > other.noOfVotes)
                 return 1;
             return -1;
+        } 
+
+        public void AddVotes(Candidate sameCandidate)
+        {
+            noOfVotes += sameCandidate.noOfVotes;
+            
         }
     }
 }
