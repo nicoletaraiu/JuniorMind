@@ -16,7 +16,7 @@ namespace Elections
             this.numberOfLists = numberOfLists;
         } 
 
-        public CandidatesSortedAlphabetically MergeLists(CandidatesSortedAlphabetically[] lists)
+        public CandidatesSortedAlphabetically MergeAllLists()
         {
             CandidatesSortedAlphabetically finalList = lists[0];
             
