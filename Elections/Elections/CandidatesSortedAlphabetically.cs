@@ -13,66 +13,47 @@ namespace Elections
         {
             this.candidates = candidates;
         }
-       public Candidate[] SortAlphabetically(ref Candidate[] candidates)
-        {
-            for(int i = 0; i < candidates.Length; i++)
-                for(int j = 0; j < candidates.Length - 1; j++)
-                {
-                    if (candidates[j].CompareByName(candidates[j + 1]) == -1)
-                    {
-                        Candidate aux = candidates[j];
-                        candidates[j] = candidates[j + 1];
-                        candidates[j + 1] = aux;
-                    }
-                }
-            return candidates;
-        }
-     
-
-       /* public Candidate[] SortAlphabetically(Candidate[] candidates, int begin, int end)
+      
+        public Candidate[] SortAlphabetically(Candidate[] candidates, int begin, int end)
         {
             Candidate pivot = candidates[(begin + (end - begin) / 2)];
             int left = begin;
-            int right = end; 
+            int right = end;
             while (left <= right)
             {
                 while (candidates[left].CompareByName(pivot) == 1)
                 {
                     left++;
                 }
-
                 while (candidates[right].CompareByName(pivot) == -1)
                 {
                     right--;
                 }
-
                 if (left <= right)
                 {
                     swap(candidates, left, right);
                     left++;
                     right--;
                 }
-
                 if (begin < right)
                 {
                     return SortAlphabetically(candidates, begin, left - 1);
                 }
-
                 if (end > left)
                 {
                     return SortAlphabetically(candidates, right + 1, end);
                 }
-                
-              }
-            return candidates;
-            
-        }
 
+            }
+            return candidates;
+
+        }
         static void swap(Candidate[] candidates, int x, int y)
         {
             Candidate temp = candidates[x];
             candidates[x] = candidates[y];
             candidates[y] = temp;
-        }*/
+        }
+
     }
 }

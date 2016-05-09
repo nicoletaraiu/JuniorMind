@@ -8,26 +8,23 @@ using System.Threading.Tasks;
 namespace Elections
 {
     [Microsoft.VisualStudio.TestTools.UnitTesting.TestClass]
-    public class CandidatesSortedAlphabeticallyTests
+    public class MyTestClass
     {
         [TestMethod]
-        public void SortAlphabeticallyTest()
+        public void SortByVotesTest()
         {
             var ion = new Candidate("Ion", 314);
             var adam = new Candidate("Adam", 207);
             var dan = new Candidate("Dan", 500);
             var vasile = new Candidate("Vasile", 135);
-            var candidates = new Candidate[] { ion, adam, dan, vasile };
-            var sortedAlphabetically = new Candidate[] { adam, dan, ion, vasile };
+            var sergiu = new Candidate("Sergiu", 95);
+            var candidates = new Candidate[] { ion, adam, dan, vasile, sergiu };
+            var sortedByVotes = new Candidate[] { dan, ion, adam, vasile, sergiu };
 
-
-
-            CandidatesSortedAlphabetically firstList = new CandidatesSortedAlphabetically(candidates);
-            CollectionAssert.AreEqual(sortedAlphabetically, firstList.SortAlphabetically( candidates, 0, candidates.Length - 1));
+            var listOfCandidates = new CandidatesSortedByVotes(candidates);
+            CollectionAssert.AreEqual(sortedByVotes, listOfCandidates.SortByVotes(candidates));
         }
 
-     
-
     }
-    
+   
 }

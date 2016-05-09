@@ -53,6 +53,8 @@
     <Compile Include="Candidate.cs" />
     <Compile Include="CandidateTests.cs" />
     <Compile Include="CandidatesSortedAlphabetically.cs" />
+    <Compile Include="CandidatesSortedByVotesTests.cs" />
+    <Compile Include="CandidatesSortedByVotes.cs" />
     <Compile Include="ListOfCandidates.cs" />
     <Compile Include="ListOfCandidatesTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
