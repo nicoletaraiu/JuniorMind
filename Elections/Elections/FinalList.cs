@@ -24,7 +24,7 @@ namespace Elections
                 
                 finalList.Merge(lists[j]);
                 
-                return finalList;
+            return finalList; 
 
         }
 

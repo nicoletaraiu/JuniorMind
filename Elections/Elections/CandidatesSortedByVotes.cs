@@ -15,9 +15,9 @@ namespace Elections
         }
 
         public Candidate[] SortByVotes(Candidate[] candidates)
-         {
-            for(int i = 0; i < candidates.Length; i++)
-                for(int j = 0; j < candidates.Length - 1; j++)
+        {
+            for (int i = 0; i < candidates.Length; i++)
+                for (int j = 0; j < candidates.Length - 1; j++)
                 {
                     if (candidates[j].CompareByVotes(candidates[j + 1]) == -1)
                     {
@@ -28,5 +28,8 @@ namespace Elections
                 }
             return candidates;
         }
+
+
+
     }
 }

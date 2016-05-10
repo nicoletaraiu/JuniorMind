@@ -35,7 +35,7 @@ namespace Elections
             return -1;
         } 
 
-        public void AddVotes(Candidate sameCandidate)
+        public void MergeVotes(Candidate sameCandidate)
         {
             noOfVotes += sameCandidate.noOfVotes;
             

@@ -28,11 +28,11 @@ namespace Elections
         }
 
         [TestMethod]
-        public void AddVotesTest()
+        public void MergeVotesTest()
         {
             var ion = new Candidate("Ion", 345);
             var ionFromOtherList = new Candidate("Ion", 125);
-            ion.AddVotes(ionFromOtherList);
+            ion.MergeVotes(ionFromOtherList);
             var ionFinal = new Candidate("Ion", 470); 
             Assert.AreEqual(0, ion.CompareByVotes(ionFinal));
         }

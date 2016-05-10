@@ -59,7 +59,7 @@ namespace Elections
         {
             int length = sortedCandidates.candidates.Length;
             for (int i = 0; i < length; i++)
-                candidates[i].AddVotes(sortedCandidates.candidates[i]);
+                candidates[i].MergeVotes(sortedCandidates.candidates[i]);
         }
 
     }
