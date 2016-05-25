@@ -100,7 +100,12 @@ namespace List
 
         public void CopyTo(T[] array, int arrayIndex)
         {
-            throw new NotImplementedException();
+            int aux = arrayIndex;
+            for(int i = 0; i < Count; i++)
+            {
+                array.SetValue(objectsList[i], aux);
+                aux++;
+            }
         }
 
         public bool Remove(T item)

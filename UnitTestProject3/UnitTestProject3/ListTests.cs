@@ -61,5 +61,16 @@ namespace ListTests
             Assert.Equal(false, list.Contains(3));
 
         }
+
+        [Fact]
+        public void CopyToTest()
+        {
+            var arr = new int[] { 12, 20, 11, 13, 25, 18, 9 };
+            var list = new List<int> { 1, 2, 3 };
+            list.CopyTo(arr, 2);
+
+            Assert.Equal(new int[] {12, 20, 1, 2, 3, 18, 9 }, arr);
+
+        }
     }
 }
