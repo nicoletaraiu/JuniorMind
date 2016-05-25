@@ -50,6 +50,16 @@ namespace ListTests
             var list = new List<int> { 12, 20, 11, 13 };
             list.RemoveAt(2);
             Assert.Equal(2, list.IndexOf(13));
+            
+        }
+        [Fact]
+        public void ContainsTest()
+        {
+            var list = new List<int> { 12, 20, 11, 13 };
+            
+            Assert.Equal(true, list.Contains(20));
+            Assert.Equal(false, list.Contains(3));
+
         }
     }
 }

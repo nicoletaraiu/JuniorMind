@@ -80,7 +80,7 @@ namespace List
 
         public void RemoveAt(int index)
         {
-            for (int i = index; i < counter - 1; i++)
+            for (int i = index; i < counter; i++)
                 objectsList[i] = objectsList[i+1];
             counter--;
             Array.Resize(ref objectsList, counter + 1);
@@ -90,7 +90,12 @@ namespace List
 
         public bool Contains(T item)
         {
-            throw new NotImplementedException();
+            for (int i = 0; i < counter; i++)
+            {
+                if (objectsList[i].Equals(item))
+                    return true;
+            }
+            return false;
         }
 
         public void CopyTo(T[] array, int arrayIndex)
