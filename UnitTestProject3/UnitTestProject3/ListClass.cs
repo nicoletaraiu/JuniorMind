@@ -9,7 +9,7 @@ namespace List
 {
     class List<T> : IList<T>
     {
-        T[] objectsList = new T[0];
+        T[] objectsList = new T[5];
         int counter = 0;
         
         public T this[int index]
@@ -44,9 +44,10 @@ namespace List
 
         public void Add(T item)
         {
-            Array.Resize(ref objectsList, objectsList.Length + 1);
+            ExtendListSize();
             objectsList[counter] = item;
             counter++;
+            
         }
 
         public void Clear()
@@ -67,13 +68,14 @@ namespace List
 
         public void Insert(int index, T item)
         {
-            Array.Resize(ref objectsList, objectsList.Length + 1);
-            counter++;
+            ExtendListSize();
+           
             for(int i = objectsList.Length -1; i < index; i--)
             {
                 objectsList[i] = objectsList[i - 1];
             }
             objectsList[index] = item;
+            counter++;
         }
 
         public void RemoveAt(int index)
@@ -106,6 +108,12 @@ namespace List
         IEnumerator IEnumerable.GetEnumerator()
         {
             throw new NotImplementedException();
+        }
+
+        public void ExtendListSize()
+        {
+            if (counter == objectsList.Length - 1)
+                Array.Resize(ref objectsList, objectsList.Length * 2);
         }
     }
 }
