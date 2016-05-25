@@ -49,9 +49,20 @@ namespace List
             counter++;
         }
 
+        public void Clear()
+        {
+            Array.Resize(ref objectsList, 0);
+            counter = 0;
+        }
+
         public int IndexOf(T item)
         {
-            throw new NotImplementedException();
+            for(int i = 0; i< objectsList.Length; i++)
+            {
+                if (objectsList[i].Equals(item))
+                    return i;
+            }
+            return -1;
         }
 
         public void Insert(int index, T item)
@@ -64,10 +75,7 @@ namespace List
             throw new NotImplementedException();
         }
 
-        public void Clear()
-        {
-            throw new NotImplementedException();
-        }
+       
 
         public bool Contains(T item)
         {

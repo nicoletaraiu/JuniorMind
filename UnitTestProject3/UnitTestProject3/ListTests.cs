@@ -25,5 +25,15 @@ namespace ListTests
             list.Clear();
             Assert.Equal(0, list.Count);
         }
+
+        [Fact]
+        public void IndexOf()
+        {
+            var list = new List<int>();
+            list.Add(20);
+            list.Add(11);
+            list.Add(5);
+            Assert.Equal(1, list.IndexOf(11));
+        }
     }
 }
