@@ -110,7 +110,12 @@ namespace List
 
         public bool Remove(T item)
         {
-            throw new NotImplementedException();
+            if (Contains(item))
+            {
+                RemoveAt(IndexOf(item));
+                return true;
+            }
+            return false;
         }
 
         public IEnumerator<T> GetEnumerator()

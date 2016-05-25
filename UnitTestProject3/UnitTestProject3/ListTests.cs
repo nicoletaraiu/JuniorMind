@@ -72,5 +72,17 @@ namespace ListTests
             Assert.Equal(new int[] {12, 20, 1, 2, 3, 18, 9 }, arr);
 
         }
+
+        [Fact]
+        public void RemoveTest()
+        {
+            var list = new List<int> { 12, 20, 11, 13, 11, 25 };
+           
+
+            Assert.Equal(true, list.Remove(11));
+            Assert.Equal(false, list.Remove(1));
+
+
+        }
     }
 }
