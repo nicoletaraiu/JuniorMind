@@ -67,7 +67,13 @@ namespace List
 
         public void Insert(int index, T item)
         {
-            throw new NotImplementedException();
+            Array.Resize(ref objectsList, objectsList.Length + 1);
+            counter++;
+            for(int i = objectsList.Length -1; i < index; i--)
+            {
+                objectsList[i] = objectsList[i - 1];
+            }
+            objectsList[index] = item;
         }
 
         public void RemoveAt(int index)
