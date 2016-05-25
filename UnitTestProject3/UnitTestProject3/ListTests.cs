@@ -44,12 +44,12 @@ namespace ListTests
             Assert.Equal(2, list.IndexOf(22));
         }
 
-       /* [Fact]
+        [Fact]
         public void RemoveAtTest()
         {
             var list = new List<int> { 12, 20, 11, 13 };
             list.RemoveAt(2);
-            Assert.Equal(2, list.IndexOf(22));
-        }*/
+            Assert.Equal(2, list.IndexOf(13));
+        }
     }
 }

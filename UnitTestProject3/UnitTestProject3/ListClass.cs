@@ -70,7 +70,7 @@ namespace List
         {
             ExtendListSize();
            
-            for(int i = objectsList.Length -1; i < index; i--)
+            for(int i = counter; i < index; i--)
             {
                 objectsList[i] = objectsList[i - 1];
             }
@@ -80,7 +80,10 @@ namespace List
 
         public void RemoveAt(int index)
         {
-            throw new NotImplementedException();
+            for (int i = index; i < counter - 1; i++)
+                objectsList[i] = objectsList[i+1];
+            counter--;
+            Array.Resize(ref objectsList, counter + 1);
         }
 
        
