@@ -3,9 +3,9 @@ using System;
 using System.Linq;
 using Xunit;
 
-namespace UnitTestProject3
+namespace ListTests
 {
-    public class UnitTest1
+    public class ListTests
     {
         [Fact]
         public void AddAndCountTest()
@@ -14,6 +14,16 @@ namespace UnitTestProject3
             firstList.Add(13);
             firstList.Add(100);
             Assert.Equal(2, firstList.Count);
+        }
+
+        [Fact]
+        public void ClearTest()
+        {
+            var list = new List<int>();
+            list.Add(20);
+            list.Add(1);
+            list.Clear();
+            Assert.Equal(0, list.Count);
         }
     }
 }
