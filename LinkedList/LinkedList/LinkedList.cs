@@ -20,6 +20,8 @@ namespace LinkedList
             this.count = 0;
 
         }
+
+       
         public int Count
         {
             get
@@ -38,7 +40,11 @@ namespace LinkedList
 
         public void Add(T item)
         {
-            throw new NotImplementedException();
+            var currentNode = new Node<T>(item) { Previous = head.Previous, Next = head };
+            Node<T> aux = head.Previous;
+            head.Previous = currentNode;
+            aux.Next = currentNode;
+            count++;
         }
 
         public void Clear()
