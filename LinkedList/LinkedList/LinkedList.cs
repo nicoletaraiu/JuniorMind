@@ -24,7 +24,7 @@ namespace LinkedList
         {
             get
             {
-                throw new NotImplementedException();
+               return this.count;
             }
         }
 

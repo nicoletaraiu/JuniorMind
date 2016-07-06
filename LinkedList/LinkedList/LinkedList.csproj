@@ -61,9 +61,9 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="LinkedList.cs" />
     <Compile Include="Node.cs" />
-    <Compile Include="UnitTest1.cs" />
+    <Compile Include="LinkedListTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
