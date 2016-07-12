@@ -22,5 +22,13 @@ namespace LinkedList
             var aList = new LinkedList<int> { 2, 5, 8, 7 };
             Assert.Equal(4, aList.Count);
         }
+
+        [Fact]
+        public void TestforContain()
+        {
+            var aList = new LinkedList<int> { 2, 5, 8, 7 };
+            Assert.True(aList.Contains(8));
+            Assert.False(aList.Contains(12));
+        }
     }
 }

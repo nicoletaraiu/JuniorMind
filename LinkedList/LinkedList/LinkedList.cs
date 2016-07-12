@@ -49,12 +49,20 @@ namespace LinkedList
 
         public void Clear()
         {
-            throw new NotImplementedException();
+            this.head = null;
+            this.count = 0; 
         }
 
         public bool Contains(T item)
         {
-            throw new NotImplementedException();
+            Node<T> iNode = head.Next;
+            while (iNode != head)
+            {
+                if (iNode.Data.Equals(item))
+                    return true;
+                iNode = iNode.Next;
+            }
+            return false;
         }
 
         public void CopyTo(T[] array, int arrayIndex)
