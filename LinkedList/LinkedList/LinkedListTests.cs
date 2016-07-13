@@ -50,5 +50,13 @@ namespace LinkedList
 
         }
 
+        [Fact]
+        public void TestforIndexOf()
+        {
+            var aList = new LinkedList<int> { 2, 5, 8, 7 };
+            Assert.Equal(1, aList.IndexOf(5));
+            Assert.Equal(-1, aList.IndexOf(12));
+        }
+
     }
 }

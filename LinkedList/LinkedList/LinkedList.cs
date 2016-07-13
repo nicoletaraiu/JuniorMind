@@ -99,6 +99,26 @@ namespace LinkedList
                 return false;
             RemoveNode(toRemove);
             return true;
+        }  
+
+        public int IndexOf(T item)
+        {
+            var node = Find(item);
+            var iNode = head.Next;
+            int index = 0;
+            while (!iNode.Equals(head))
+            {
+                if (iNode.Data.Equals(node.Data))
+                    return index;
+                iNode = iNode.Next;
+                index++;
+            }
+            return -1;
+        }
+
+        public void RemoveAt(int index)
+        {
+            throw new NotImplementedException();
         }
 
         IEnumerator IEnumerable.GetEnumerator()
