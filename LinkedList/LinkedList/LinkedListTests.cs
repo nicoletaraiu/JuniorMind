@@ -30,5 +30,14 @@ namespace LinkedList
             Assert.True(aList.Contains(8));
             Assert.False(aList.Contains(12));
         }
+
+        [Fact]
+        public void TestforCopy()
+        {
+            var aList = new LinkedList<int> { 2, 5, 8, 7 };
+            int[] arr = { 1, 2, 3, 4, 5 };
+            aList.CopyTo(arr, 2);
+            Assert.Equal(new int[] { 1, 2, 2, 5, 8 }, arr);
+        }
     }
 }

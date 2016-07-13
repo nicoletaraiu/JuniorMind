@@ -67,7 +67,15 @@ namespace LinkedList
 
         public void CopyTo(T[] array, int arrayIndex)
         {
-            throw new NotImplementedException();
+            Node<T> iNode = head.Next;
+            for(int i = arrayIndex; i < array.Length; i++)
+            {
+                if (!iNode.Equals(head))
+                {
+                    array.SetValue(iNode.Data, i);
+                    iNode = iNode.Next;
+                }
+            }
         }
 
         public IEnumerator<T> GetEnumerator()
