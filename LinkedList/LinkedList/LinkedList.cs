@@ -94,7 +94,11 @@ namespace LinkedList
 
         public bool Remove(T item)
         {
-            throw new NotImplementedException();
+            Node<T> toRemove = Find(item);
+            if (toRemove.Equals(head))
+                return false;
+            RemoveNode(toRemove);
+            return true;
         }
 
         IEnumerator IEnumerable.GetEnumerator()
@@ -108,6 +112,7 @@ namespace LinkedList
             Node<T> after = toBeRemoved.Next;
             before.Next = after;
             after.Previous = before;
+            count--;
         }
     }
 }

@@ -40,6 +40,15 @@ namespace LinkedList
             Assert.Equal(new int[] { 1, 2, 2, 5, 8 }, arr);
         }
 
-     
+        [Fact]
+        public void TestforRemove()
+        {
+            var aList = new LinkedList<int> { 2, 5, 8, 7 };
+            Assert.True(aList.Remove(8));
+            Assert.Equal(3, aList.Count);
+            Assert.False(aList.Remove(3));
+
+        }
+
     }
 }
