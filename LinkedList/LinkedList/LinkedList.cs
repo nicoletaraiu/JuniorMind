@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace LinkedList
 {
-    class LinkedList<T> : IEnumerable<T>, ICollection<T>
+    class LinkedList<T> : ICollection<T>, IEnumerable<T>
     {
         private Node<T> head;
         private int count;
@@ -85,12 +85,20 @@ namespace LinkedList
 
         public bool Remove(T item)
         {
-            throw new NotImplementedException();
+            
         }
 
         IEnumerator IEnumerable.GetEnumerator()
         {
             throw new NotImplementedException();
+        }
+
+        public void RemoveNode(Node<T> toBeRemoved)
+        {
+            Node<T> before = toBeRemoved.Previous;
+            Node<T> after = toBeRemoved.Next;
+            before.Next = after;
+            after.Previous = before;
         }
     }
 }
