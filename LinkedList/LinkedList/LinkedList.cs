@@ -55,14 +55,23 @@ namespace LinkedList
 
         public bool Contains(T item)
         {
+            Node<T> node = Find(item);
+            if (!node.Equals(head))
+                return true;
+            return false;
+          
+        }
+
+        public Node<T> Find (T value)
+        {
             Node<T> iNode = head.Next;
             while (iNode != head)
             {
-                if (iNode.Data.Equals(item))
-                    return true;
+                if (iNode.Data.Equals(value))
+                    return iNode;
                 iNode = iNode.Next;
             }
-            return false;
+            return head;
         }
 
         public void CopyTo(T[] array, int arrayIndex)
@@ -85,7 +94,7 @@ namespace LinkedList
 
         public bool Remove(T item)
         {
-            
+            throw new NotImplementedException();
         }
 
         IEnumerator IEnumerable.GetEnumerator()

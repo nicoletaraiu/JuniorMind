@@ -27,7 +27,7 @@ namespace LinkedList
         public void TestforContain()
         {
             var aList = new LinkedList<int> { 2, 5, 8, 7 };
-            Assert.True(aList.Contains(8));
+            Assert.True(aList.Contains(5));
             Assert.False(aList.Contains(12));
         }
 
@@ -39,5 +39,7 @@ namespace LinkedList
             aList.CopyTo(arr, 2);
             Assert.Equal(new int[] { 1, 2, 2, 5, 8 }, arr);
         }
+
+     
     }
 }
