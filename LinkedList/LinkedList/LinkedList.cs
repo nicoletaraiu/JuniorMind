@@ -118,7 +118,12 @@ namespace LinkedList
 
         public void RemoveAt(int index)
         {
-            throw new NotImplementedException();
+            var iNode = head.Next;
+            for (int i = 0; i < index; i++)
+            {
+                iNode = iNode.Next;
+            }
+            RemoveNode(iNode);
         }
 
         IEnumerator IEnumerable.GetEnumerator()

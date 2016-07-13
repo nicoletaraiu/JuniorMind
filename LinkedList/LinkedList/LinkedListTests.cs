@@ -58,5 +58,16 @@ namespace LinkedList
             Assert.Equal(-1, aList.IndexOf(12));
         }
 
+
+        [Fact]
+        public void TestforRemoveAt()
+        {
+            var aList = new LinkedList<int> { 2, 5, 8, 7 };
+            aList.RemoveAt(1);
+            int[] arr = new int[3];
+            aList.CopyTo(arr, 0);
+            Assert.Equal(new int[] { 2, 8, 7 }, arr);
+        }
+
     }
 }
