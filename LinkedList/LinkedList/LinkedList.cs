@@ -89,7 +89,17 @@ namespace LinkedList
 
         public IEnumerator<T> GetEnumerator()
         {
-            throw new NotImplementedException();
+            var node = head.Next;
+            while (!node.Equals(head))
+            {
+                yield return node.Data;
+                node = node.Next;
+            }
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
         }
 
         public bool Remove(T item)
@@ -99,7 +109,9 @@ namespace LinkedList
                 return false;
             RemoveNode(toRemove);
             return true;
-        }  
+        }
+       
+
 
         public int IndexOf(T item)
         {
