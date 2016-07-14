@@ -42,11 +42,9 @@ namespace LinkedList
 
         public void Add(T item)
         {
-            var currentNode = new Node<T>(item) { Previous = head.Previous, Next = head };
-            Node<T> aux = head.Previous;
-            head.Previous = currentNode;
-            aux.Next = currentNode;
-            count++;
+         
+                AddLast(item);
+            
         }
 
         public void AddFirst(T item)
@@ -55,6 +53,15 @@ namespace LinkedList
             Node<T> aux = head.Next;
             head.Next = currentNode;
             aux.Previous = currentNode;
+            count++;
+        }
+
+        public void AddLast(T item)
+        {
+            var currentNode = new Node<T>(item) { Previous = head.Previous, Next = head };
+            Node<T> aux = head.Previous;
+            head.Previous = currentNode;
+            aux.Next = currentNode;
             count++;
         }
 
