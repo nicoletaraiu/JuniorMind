@@ -17,6 +17,14 @@ namespace LinkedList
         }
 
         [Fact]
+        public void TestForAddFirst()
+        {
+            var aList = new LinkedList<int> { 2, 5, 8, 7 };
+            aList.AddFirst(9);
+            Assert.Equal(0, aList.IndexOf(9));
+        }
+
+        [Fact]
         public void CountTest()
         {
             var aList = new LinkedList<int> { 2, 5, 8, 7 };
@@ -30,6 +38,15 @@ namespace LinkedList
             Assert.True(aList.Contains(5));
             Assert.False(aList.Contains(12));
         }
+
+        [Fact]
+        public void TestforClear()
+        {
+            var aList = new LinkedList<int> { 2, 5, 8, 7 };
+            aList.Clear();
+            Assert.Equal(0, aList.Count);
+        }
+
 
         [Fact]
         public void TestforCopy()

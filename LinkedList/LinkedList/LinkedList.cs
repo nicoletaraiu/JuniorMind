@@ -36,7 +36,9 @@ namespace LinkedList
             {
                 throw new NotImplementedException();
             }
-        }
+        } 
+
+       
 
         public void Add(T item)
         {
@@ -44,6 +46,15 @@ namespace LinkedList
             Node<T> aux = head.Previous;
             head.Previous = currentNode;
             aux.Next = currentNode;
+            count++;
+        }
+
+        public void AddFirst(T item)
+        {
+            var currentNode = new Node<T>(item) { Previous = head, Next = head.Next };
+            Node<T> aux = head.Next;
+            head.Next = currentNode;
+            aux.Previous = currentNode;
             count++;
         }
 
@@ -136,11 +147,6 @@ namespace LinkedList
                 iNode = iNode.Next;
             }
             RemoveNode(iNode);
-        }
-
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            throw new NotImplementedException();
         }
 
         public void RemoveNode(Node<T> toBeRemoved)
